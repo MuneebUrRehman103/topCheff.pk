@@ -9,21 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StandardMenuActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".PhoneNoLoginActivity">
-
-        </activity>
+        <activity android:name=".StandardMenuActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".PhoneNoLoginActivity" />
         <activity android:name=".CateringActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-
         </activity>
+        <activity android:name=".SideBarActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
