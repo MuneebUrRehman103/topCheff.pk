@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.themuneeb.myfristapp.PhoneNoLoginActivity">
+    tools:context="com.example.themuneeb.myfristapp.PhoneNoLoginActivity"
+    android:background="@drawable/background1_bg"
 
-
+    >
 
 
     <ImageView
@@ -22,22 +23,51 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_chef_logo" />
+        app:srcCompat="@drawable/logo_top_cheff" />
 
     <TextView
         android:id="@+id/txtLoginTextBoxTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="55dp"
+        android:background="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="Enter your mobile number"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/colorText"
         android:textColorLink="?android:attr/colorForeground"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:hint="Enter Phone no"
+        android:inputType="phone"
+
+
+        android:textColor="@color/fillColor"
+        android:textColorHint="@color/fillColor"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:met_baseColor="@color/colorPrimaryDark"
+
+
+        app:met_floatingLabel="highlight"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="@color/fbutton_default_color"
+        app:met_singleLineEllipsis="true" />
+
+
+
 
     <EditText
         android:id="@+id/txtPhoneNumber"
@@ -57,40 +87,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLoginTextBoxTitle" />
 
-    <Button
+
+    <info.hoang8f.widget.FButton
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="38dp"
-        android:background="@color/fillColor"
-        android:text="Send Code"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Login"
+        android:textColor="@color/common_google_signin_btn_text_light"
+        app:cornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPhoneNumber" />
+        app:shadowColor="@color/colorPrimary"
+        app:shadowEnabled="true"
+        app:shadowHeight="4dp" />
 
 
     <info.hoang8f.widget.FButton
-        android:layout_width="0dp"
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/hoangbutton"
-        android:text="Signin"
-        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Register"
 
-
-
-
-        />
-
-
-
-
-
-
-
-
+        android:textColor="@color/common_google_signin_btn_text_light"
+        app:cornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shadowColor="@color/colorPrimary"
+        app:shadowEnabled="true"
+        app:shadowHeight="4dp" />
 
 
 

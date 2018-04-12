@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.themuneeb.myfristapp.CartMenuActivity"
+    android:background="@drawable/background1_bg"
+    android:padding="16dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewForCartMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <android.support.v7.widget.CardView
+       android:layout_alignParentBottom="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:cardBackgroundColor="@color/cart_background_color"
+        app:cardElevation="4dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_margin="8dp"
+                android:gravity="center_vertical"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Rs : "
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+
+                    />
+
+
+                <TextView
+                    android:id="@+id/txtTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,000"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+
+                    />
+
+
+
+            </LinearLayout>
+
+
+            <Button
+
+                android:id="@+id/btnSubmitOrder"
+                android:text="Submit Order"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/btn_primary_color"
+
+                 />
+
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+</RelativeLayout>
