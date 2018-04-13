@@ -28,6 +28,14 @@ class CartMenuActivity : AppCompatActivity() {
 
 
 
+            btnSubmitOrder.setOnClickListener {
+
+                database.removeAllItemsFromCart()
+
+
+
+            }
+
 
         // Task 2  : send the data to the firebase to be stored when the submit order button id pressed
 

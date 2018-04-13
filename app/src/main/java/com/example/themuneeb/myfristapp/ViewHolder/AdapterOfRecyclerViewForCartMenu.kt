@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.custom_view_of_rec_view_for_cart_menu.view
 
 
 
-class AdapterOfRecyclerViewForCartMenu(listOfOrders : List<Order?>) : RecyclerView.Adapter<CustomViewHolder>(){
+class AdapterOfRecyclerViewForCartMenu(listOfOrders : List<Order>) : RecyclerView.Adapter<CustomViewHolder>(){
 
 //
 //    var dummyItemsNames = listOf("Al-Habib Pakwan deal No : 3","Al-Meezan deal No : 6", "Pizza Hut deal No :1")
@@ -62,11 +62,11 @@ class AdapterOfRecyclerViewForCartMenu(listOfOrders : List<Order?>) : RecyclerVi
 
         for( order in listOfAllAddedOrders ){
 
-            cartItemsId.add(order?.productId)
-            cartItemsNames.add(order?.productName)
-            cartItemsQuantity.add(order?.quantity)
-            cartItemsPrice.add(order?.price)
-            cartItemsDiscount.add(order?.discount)
+            cartItemsId.add(order.productId)
+            cartItemsNames.add(order.productName)
+            cartItemsQuantity.add(order.quantity)
+            cartItemsPrice.add(order.price)
+            cartItemsDiscount.add(order.discount)
 
         }
 
@@ -74,9 +74,9 @@ class AdapterOfRecyclerViewForCartMenu(listOfOrders : List<Order?>) : RecyclerVi
 
 
 
-        holder?.view?.LinearLayout1?.txtItemName?.text = cartItemsNames.get(position)
+        holder?.view?.LinearLayout1?.txtItemName?.text = cartItemsNames.get(position).toString()
 
-        holder?.view?.LinearLayout1?.txtPrice?.text = cartItemsPrice.get(position)
+        holder?.view?.LinearLayout1?.txtPrice?.text = cartItemsPrice.get(position).toString()
 
 
 

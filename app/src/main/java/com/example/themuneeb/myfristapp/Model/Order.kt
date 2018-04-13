@@ -5,13 +5,13 @@ package com.example.themuneeb.myfristapp.Model
  */
 
 
- class Order {
+ class Order( id : String , name : String , quantity : String , price : String , discount : String ) {
 
-    var productName : String? = null
-    var productId : String? = null
-    var quantity : String? = null
-    var price : String? = null
-    var discount : String? = null
+    var productName : String = name
+    var productId : String = id
+    var quantity : String =  quantity
+    var price : String = price
+    var discount : String = discount
 
 
 

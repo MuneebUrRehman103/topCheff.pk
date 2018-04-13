@@ -8,81 +8,98 @@
     android:background="@drawable/background1_bg"
     android:padding="16dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewForCartMenu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
-    <android.support.v7.widget.CardView
-       android:layout_alignParentBottom="true"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="8dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/cart_background_color"
-        app:cardElevation="4dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
         >
 
-        <RelativeLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewForCartMenu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:layout_marginBottom="12dp"
+            />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_margin="8dp"
-                android:gravity="center_vertical"
+        <android.support.v7.widget.CardView
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            app:cardBackgroundColor="@color/cart_background_color"
+            app:cardElevation="4dp"
+            >
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total Rs : "
-                    android:textSize="20sp"
-                    android:textColor="@color/white"
-
-                    />
-
-
-                <TextView
-                    android:id="@+id/txtTotalPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1,000"
-                    android:textSize="24sp"
-                    android:textColor="@color/white"
-
-                    />
-
-
-
-            </LinearLayout>
-
-
-            <Button
-
-                android:id="@+id/btnSubmitOrder"
-                android:text="Submit Order"
-                android:textColor="@android:color/white"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="4dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/btn_primary_color"
+                android:layout_height="match_parent">
 
-                 />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp"
+                    android:gravity="center_vertical"
 
-
-
-        </RelativeLayout>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
 
-    </android.support.v7.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Rs : "
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/txtTotalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1,000"
+                        android:textSize="24sp"
+                        android:textColor="@color/white"
+
+                        />
+
+
+
+                </LinearLayout>
+
+
+                <Button
+
+                    android:id="@+id/btnSubmitOrder"
+                    android:text="Submit Order"
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/btn_primary_color"
+
+                    />
+
+
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+
+    </LinearLayout>
+
 
 
 

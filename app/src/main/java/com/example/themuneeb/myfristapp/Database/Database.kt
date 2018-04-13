@@ -21,9 +21,9 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
     // task 1 : make getAddedMenuItemsFromCart  method and collect all the items in the array of type orders that will be
     // returned to who ever will call it
 
-    fun getItemsAddedToCart () : List<Order?> {
+    fun getItemsAddedToCart () : List<Order> {
 
-        var listOfOrdersThatAreAdded : MutableList<Order?> = arrayListOf()
+        var listOfOrdersThatAreAdded : MutableList<Order> = arrayListOf()
 
         val databaseInstance : SQLiteDatabase = readableDatabase
 
@@ -33,7 +33,7 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
         val cursorOfTheRowsReturnedFromDatabase = databaseInstance.rawQuery(query,null)
 
 
-        var order : Order? = null
+
 
 
         if (cursorOfTheRowsReturnedFromDatabase.count != 0){
@@ -41,17 +41,29 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
             cursorOfTheRowsReturnedFromDatabase.moveToFirst()
             do{
 
-                order?.productId  = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("ProductId"))
-                order?.productName = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("ProductName"))
-                order?.quantity = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("Quantity"))
-                order?.discount = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("Price"))
-                order?.price = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("Discount"))
+
+
+
+                var productId = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("ProductId"))
+                var productName = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("ProductName"))
+                var productQuantity = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("Quantity"))
+                var productDiscount = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("Discount"))
+                var productPrice = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("Price"))
+
+
+                var order = Order(productId,productName,productQuantity,productPrice,productDiscount)
+
+
+                val name = productName
+
+                println(" ordername :: $name + price :: ${order.price}  ")
 
                 listOfOrdersThatAreAdded.add(order)
 
             }while(cursorOfTheRowsReturnedFromDatabase.moveToNext())
 
         }
+
 
 
         return listOfOrdersThatAreAdded
@@ -82,7 +94,7 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
 
         val databaseInstance = readableDatabase
 
-        val queryForDeletingAllCartItems = "DELETE * From OrderDetail ;"
+        val queryForDeletingAllCartItems = "DELETE FROM OrderDetail ;"
 
         databaseInstance.execSQL(queryForDeletingAllCartItems)
 

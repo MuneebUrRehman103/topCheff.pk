@@ -28,13 +28,15 @@ class MenuDetailsActivity : AppCompatActivity() {
                 val database = Database(this)
 
                 // dummy order :: when api will be set then menu view's data stored in this class will be used
-                val order = Order()
 
-                order.productId = "12345"
-                order.productName = "PizzaHutDeal-No-1"
-                order.quantity = "1"
-                order.price = "1000"
-                order.discount = "0"
+
+                val productId = "12345"
+                val productName = "PizzaHutDeal-No-1"
+                val quantity = "1"
+                val price = "1000"
+                val discount = "0"
+
+                val order = Order(productId,productName,quantity,price,discount)
 
                 database.addItemsToCart(order)
 
