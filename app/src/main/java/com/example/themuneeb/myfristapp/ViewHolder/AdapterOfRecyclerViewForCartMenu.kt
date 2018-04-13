@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.custom_view_of_rec_view_for_cart_menu.view
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.TextView
+import com.example.themuneeb.myfristapp.Model.Order
 import com.example.themuneeb.myfristapp.R
 import kotlinx.android.synthetic.main.custom_view_of_rec_view_for_cart_menu.*
 import kotlinx.android.synthetic.main.custom_view_of_rec_view_for_cart_menu.view.*
@@ -27,15 +28,17 @@ import kotlinx.android.synthetic.main.custom_view_of_rec_view_for_cart_menu.view
 
 
 
-class AdapterOfRecyclerViewForCartMenu : RecyclerView.Adapter<CustomViewHolder>(){
+class AdapterOfRecyclerViewForCartMenu(listOfOrders : List<Order?>) : RecyclerView.Adapter<CustomViewHolder>(){
+
+//
+//    var dummyItemsNames = listOf("Al-Habib Pakwan deal No : 3","Al-Meezan deal No : 6", "Pizza Hut deal No :1")
+//    var dummyItemsPrice = listOf("RS : 1000","RS : 1250","RS : 2520")
 
 
-    var dummyItemsNames = listOf("Al-Habib Pakwan deal No : 3","Al-Meezan deal No : 6", "Pizza Hut deal No :1")
-    var dummyItemsPrice = listOf("1000","1250","2520")
-
+    val listOfAllAddedOrders = listOfOrders
 
     override fun getItemCount(): Int {
-        return dummyItemsNames.size
+        return listOfAllAddedOrders.size
 
     }
 
@@ -51,14 +54,29 @@ class AdapterOfRecyclerViewForCartMenu : RecyclerView.Adapter<CustomViewHolder>(
 
     override fun onBindViewHolder(holder: CustomViewHolder?, position: Int) {
 
+        val cartItemsId : MutableList<String?>  = arrayListOf()
+        val cartItemsNames : MutableList<String?>  = arrayListOf()
+        val cartItemsQuantity : MutableList<String?>  = arrayListOf()
+        val cartItemsPrice : MutableList<String?>  = arrayListOf()
+        val cartItemsDiscount : MutableList<String?>  = arrayListOf()
 
-        val nameOfItemForCartMenu = dummyItemsNames.get(position)
-//        val priceOfItemForCartMenu = dummyItemsPrice.get(position)
+        for( order in listOfAllAddedOrders ){
+
+            cartItemsId.add(order?.productId)
+            cartItemsNames.add(order?.productName)
+            cartItemsQuantity.add(order?.quantity)
+            cartItemsPrice.add(order?.price)
+            cartItemsDiscount.add(order?.discount)
+
+        }
 
 
-        holder?.view?.LinearLayout1?.txtItemName?.text = nameOfItemForCartMenu
 
-        holder?.view?.LinearLayout1?.txtPrice?.text = nameOfItemForCartMenu
+
+
+        holder?.view?.LinearLayout1?.txtItemName?.text = cartItemsNames.get(position)
+
+        holder?.view?.LinearLayout1?.txtPrice?.text = cartItemsPrice.get(position)
 
 
 

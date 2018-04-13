@@ -4,6 +4,7 @@ import com.example.themuneeb.myfristapp.ViewHolder.AdapterOfRecyclerViewForCartM
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.example.themuneeb.myfristapp.Database.Database
 import kotlinx.android.synthetic.main.activity_cart_menu.*
 
 
@@ -17,8 +18,13 @@ class CartMenuActivity : AppCompatActivity() {
 
         // Task 1 : Create the adapter for the recycler view
 
+
+            val database = Database(this)
+
+            val listOfOrderInTheCart = database.getItemsAddedToCart()
+
             recyclerViewForCartMenu.layoutManager = LinearLayoutManager(this)
-            recyclerViewForCartMenu.adapter = AdapterOfRecyclerViewForCartMenu()
+            recyclerViewForCartMenu.adapter = AdapterOfRecyclerViewForCartMenu(listOfOrderInTheCart)
 
 
 

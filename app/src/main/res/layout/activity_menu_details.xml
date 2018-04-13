@@ -88,18 +88,21 @@
         >
 
         <LinearLayout
+
+            android:id="@+id/layoutOfMenuDetailsItemsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
+            android:padding="6dp"
 
             >
 
             <android.support.v7.widget.CardView
-                android:elevation="5dp"
-                app:cardUseCompatPadding="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                app:cardBackgroundColor="@color/cardview_light_background"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -108,9 +111,9 @@
 
                     <TextView
                         android:id="@+id/txtMenuItemForMenuDetail"
-                        android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:padding="8dp"
                         android:text="Menu Item no 1"
                         android:textColor="@color/colorPrimary"
@@ -133,9 +136,8 @@
                             android:id="@+id/imgDollarSign"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_attach_money_black_24dp"
                             android:layout_weight="1"
-                            />
+                            android:src="@drawable/ic_attach_money_black_24dp" />
 
 
                         <TextView
@@ -143,11 +145,11 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="0dp"
+                            android:layout_weight="9"
                             android:text="1,000"
                             android:textColor="@color/colorPrimary"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:layout_weight="9"
 
                             />
 
@@ -156,15 +158,15 @@
 
 
                     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                        android:id="@+id/btnElegantNumber"
                         android:layout_width="120dp"
                         android:layout_height="30dp"
-                        android:id="@+id/btnElegantNumber"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginBottom="18dp"
-                        app:textSize="8dp"
-                        app:initialNumber="1"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
                         app:finalNumber="20"
+                        app:initialNumber="1"
+                        app:textSize="8dp"
 
                         >
 
@@ -175,15 +177,13 @@
             </android.support.v7.widget.CardView>
 
 
-
-
-
-
             <android.support.v7.widget.CardView
-                android:elevation="6dp"
-                app:cardUseCompatPadding="true"
+                android:id="@+id/cardView1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:elevation="6dp"
+                app:cardBackgroundColor="@color/cart_background_color"
+                app:cardUseCompatPadding="true">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -192,22 +192,20 @@
                     android:lineSpacingMultiplier="1.5"
                     android:padding="12dp"
                     android:text="Menu Item No 3 "
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14sp"
-                    />
-
-
+                    android:textColor="@color/colorText"
+                    android:textSize="14sp" />
 
 
             </android.support.v7.widget.CardView>
 
 
-
             <android.support.v7.widget.CardView
-                android:elevation="6dp"
-                app:cardUseCompatPadding="true"
+                android:id="@+id/cardView2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:elevation="6dp"
+                app:cardBackgroundColor="@color/cart_background_color"
+                app:cardUseCompatPadding="true">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -216,23 +214,20 @@
                     android:lineSpacingMultiplier="1.5"
                     android:padding="12dp"
                     android:text="Menu Item No 3 "
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14sp"
-                    />
-
-
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="14sp" />
 
 
             </android.support.v7.widget.CardView>
 
 
-
-
             <android.support.v7.widget.CardView
-                android:elevation="6dp"
-                app:cardUseCompatPadding="true"
+                android:id="@+id/cardView3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:elevation="6dp"
+                app:cardBackgroundColor="@color/cart_background_color"
+                app:cardUseCompatPadding="true">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -241,11 +236,8 @@
                     android:lineSpacingMultiplier="1.5"
                     android:padding="12dp"
                     android:text="Menu Item No 3 "
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14sp"
-                    />
-
-
+                    android:textColor="@color/colorText"
+                    android:textSize="14sp" />
 
 
             </android.support.v7.widget.CardView>

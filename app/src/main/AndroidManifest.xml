@@ -15,14 +15,14 @@
         <activity android:name=".CateringActivity" />
         <activity android:name=".SideBarActivity" />
         <activity android:name=".MenuDetailsActivity">
-
-        </activity>
-        <activity android:name=".CartMenuActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".CartMenuActivity" >
+
         </activity>
 
 
