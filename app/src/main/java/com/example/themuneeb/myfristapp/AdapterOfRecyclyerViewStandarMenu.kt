@@ -1,5 +1,7 @@
 package com.example.themuneeb.myfristapp
 
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,13 +10,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotlinx.android.synthetic.main.custom_view_recycler_standard_menu.view.*
 
+
 /**
  * Created by TheMuneeb on 3/25/2018.
  */
 
 
 
-class AdapterOfRecyclyerViewStandarMenu : RecyclerView.Adapter<CustomViewHolder>(){
+class AdapterOfRecyclyerViewStandarMenu() : RecyclerView.Adapter<CustomViewHolder>(){
 
 
     val values = listOf("Biryani","Haleem","Nihari","Kofte","Kabab","Tikka")
@@ -33,7 +36,6 @@ class AdapterOfRecyclyerViewStandarMenu : RecyclerView.Adapter<CustomViewHolder>
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CustomViewHolder {
 
-        val layoutInflator = LayoutInflater.from(parent?.context)
 //        val cellForRow = CardView(parent?.context)
 //
 //
@@ -50,14 +52,20 @@ class AdapterOfRecyclyerViewStandarMenu : RecyclerView.Adapter<CustomViewHolder>
 //        cellForRow.addView(textView2)
 
 
-        val cellForRow =  layoutInflator.inflate(R.layout.custom_view_recycler_standard_menu,parent,false)
+        val cardMenuView =  LayoutInflater.from(parent?.context).inflate(R.layout.custom_view_recycler_standard_menu,parent,false)
+
+
+        cardMenuView.setOnClickListener{
+
+            val intent = Intent(parent?.context,MenuDetailsActivity::class.java)
+
+            startActivity(parent?.context,intent,null)
+
+        }
 
 
 
-
-
-
-        return CustomViewHolder(cellForRow)
+        return CustomViewHolder(cardMenuView)
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder?, position: Int) {
@@ -66,8 +74,8 @@ class AdapterOfRecyclyerViewStandarMenu : RecyclerView.Adapter<CustomViewHolder>
         val value = values.get(position)
         val imagValue = imagValues.get(position)
 
-        holder?.view?.txtMenuTitle?.text = value
-        holder?.view?.imgMenu?.setImageResource(imagValue)
+//        holder?.view?.txtMenuTitle?.text = value
+//        holder?.view?.imgMenu?.setImageResource(imagValue)
 
 
     }

@@ -9,7 +9,7 @@
     android:layout_height="wrap_content"
 
 
-    app:cardBackgroundColor="@color/cart_background_color"
+    app:cardBackgroundColor="@color/cart_background_color1"
     app:cardElevation="4dp"
     android:layout_margin="8dp"
 

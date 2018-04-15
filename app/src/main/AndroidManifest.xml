@@ -9,23 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StandardMenuActivity" />
+        <activity android:name=".StandardMenuActivity"></activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".PhoneNoLoginActivity" />
-        <activity android:name=".CateringActivity" />
-        <activity android:name=".SideBarActivity" />
-        <activity android:name=".MenuDetailsActivity">
+        <activity android:name=".PhoneNoLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CartMenuActivity" >
-
-        </activity>
-
-
+        <activity android:name=".CateringActivity" />
+        <activity android:name=".SideBarActivity" />
+        <activity android:name=".MenuDetailsActivity"></activity>
+        <activity android:name=".CartMenuActivity" />
+        <activity
+            android:name=".GeneralMenuForSelectedCategoryActivity"
+            android:label="@string/title_activity_general_menu_for_selected_category_activity"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".MainMenuActivity"></activity>
     </application>
 
 </manifest>

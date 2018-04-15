@@ -2,13 +2,26 @@
 <resources>
     <color name="colorPrimary">#fa9e13</color>
     <color name="colorPrimaryDark">#fa9e13</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#fa9e13</color>
     <color name="primaryTextColor">#3F1904</color>
     <color name="fillColor">#fa9e13</color>
-    <color name="cart_background_color">#fa9e13</color>
+
     <color name="white">#ffffff</color>
     <color name="btn_shadow_color">#3F1904</color>
-    <color name="btn_primary_color">#228844</color>
+    <color name="btn_primary_color">#229924</color>
 
+
+
+
+    <color name="textPrimaryColor">#3F1904</color>
+    <color name="textColor1Orange">#fa9e13</color>
+    <color name="textColor2Green">#229924</color>
+
+
+
+
+    <color name="cart_background_color">#fa9e13</color>
+    <color name="cart_background_color1">#fa9e13</color>
+    <color name="cart_background_color2">#229924</color>
 
 </resources>

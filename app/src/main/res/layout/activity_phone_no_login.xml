@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.themuneeb.myfristapp.PhoneNoLoginActivity"
-    android:background="@drawable/background1_bg"
-
-    >
-
+    tools:context="com.example.themuneeb.myfristapp.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,106 +19,62 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_top_cheff" />
+        app:srcCompat="@drawable/top_chef_logo" />
 
     <TextView
-        android:id="@+id/txtLoginTextBoxTitle"
-        android:layout_width="wrap_content"
+        android:id="@+id/txt_user_verfication"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="55dp"
-        android:background="@color/colorPrimaryDark"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:text="Enter your mobile number"
-        android:textColor="@color/colorText"
-        android:textColorLink="?android:attr/colorForeground"
-        android:textSize="24sp"
+        android:text="Enter Your Mobile Number"
+        android:textColor="@color/textColor2Green"
+        android:textStyle="bold"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:hint="Enter Phone no"
-        android:inputType="phone"
-
-
-        android:textColor="@color/fillColor"
-        android:textColorHint="@color/fillColor"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:met_baseColor="@color/colorPrimaryDark"
-
-
-        app:met_floatingLabel="highlight"
-        app:met_maxCharacters="11"
-        app:met_primaryColor="@color/fbutton_default_color"
-        app:met_singleLineEllipsis="true" />
-
-
-
-
     <EditText
-        android:id="@+id/txtPhoneNumber"
-        android:layout_width="280dp"
+        android:id="@+id/txtLoginTextBoxTitle"
+        android:layout_width="240dp"
         android:layout_height="47dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:editable="false"
+        android:ems="10"
+        android:hint="Mobile Number"
+        android:inputType="textPersonName|number"
+        android:textColor="@color/textColor1Orange"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_user_verfication" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="mobile number"
-        android:inputType="textPersonName|number"
-        android:text=" "
-        android:textAlignment="center"
-        android:textColorHint="@color/primaryTextColor"
-        android:textColorLink="@color/fillColor"
+        android:layout_marginTop="32dp"
+
+        android:background="@color/textColor2Green"
+        android:text="Send Code"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLoginTextBoxTitle" />
 
-
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Login"
-        android:textColor="@color/common_google_signin_btn_text_light"
-        app:cornerRadius="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:shadowColor="@color/colorPrimary"
-        app:shadowEnabled="true"
-        app:shadowHeight="4dp" />
-
-
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Register"
-
-        android:textColor="@color/common_google_signin_btn_text_light"
-        app:cornerRadius="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="34dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:shadowColor="@color/colorPrimary"
-        app:shadowEnabled="true"
-        app:shadowHeight="4dp" />
-
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/txt_user_verfication" />
 
 </android.support.constraint.ConstraintLayout>

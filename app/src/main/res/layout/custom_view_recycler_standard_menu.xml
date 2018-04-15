@@ -1,40 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
-
 <android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"></android.support.v7.widget.CardView>
-    <ImageView
-        android:id="@+id/imgMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="it is an image "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light_focused" />
 
-    <TextView
-        android:id="@+id/txtMenuTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgMenu" />
-</android.support.constraint.ConstraintLayout>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+
+    app:cardBackgroundColor="@color/cart_background_color2"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="6dp"
+    android:layout_margin="8dp"
+
+    >
+
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginLeft="12dp"
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <LinearLayout
+            android:id="@+id/LinearLayout2"
+            android:orientation="vertical"
+            android:layout_weight="9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            >
+
+            <TextView
+                android:id="@+id/txtItemName"
+                android:textColor="@color/white"
+                android:text="PizzaHut Deal no 1 : Tikka | Fajita | Seekh | Kabab | Pizza Included"
+                android:textSize="18sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:layout_gravity="left|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingRight="26dp">
+
+                <TextView
+                    android:id="@+id/txtPerPerson"
+                    android:text="10:PersonsDeal"
+                    android:textSize="9sp"
+                    android:textColor="@color/textColor1Orange"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_weight="2"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/txtCategory"
+                    android:text="Pizza Category"
+                    android:textSize="9sp"
+                    android:textColor="@color/textColor1Orange"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="4dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/txtPrice"
+                    android:text="1000 Rs"
+                    android:textSize="9sp"
+                    android:textColor="@color/white"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="end|center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgInCartRight"
+            android:layout_gravity="left"
+
+            android:layout_marginRight="12dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/cart_rightside_image"
+            />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

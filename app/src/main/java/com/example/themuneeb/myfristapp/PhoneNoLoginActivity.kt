@@ -4,7 +4,9 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import android.text.Editable
 import android.util.Log
+import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.activity_phone_no_login.*
@@ -35,10 +37,18 @@ class PhoneNoLoginActivity : AppCompatActivity() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
-                txtLoginTextBoxTitle.text = "verify code received "
+                progressBar.visibility = View.INVISIBLE
 
 
-                val intent = Intent(this@PhoneNoLoginActivity,StandardMenuActivity::class.java)
+                txtLoginTextBoxTitle.isCursorVisible = false
+                txtLoginTextBoxTitle.isClickable = false
+                txtLoginTextBoxTitle.isFocusable = false
+
+                txtLoginTextBoxTitle.setText("Verification Code Received")
+
+                val selectedMenuOptionName = "Catering"
+
+                val intent = Intent(this@PhoneNoLoginActivity,MainMenuActivity::class.java)
 
                 startActivity(intent)
 
@@ -97,7 +107,7 @@ class PhoneNoLoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
 
-            val phoneNumber = txtPhoneNumber.text.toString()
+            val phoneNumber = txtLoginTextBoxTitle.text.toString()
 
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     phoneNumber,
@@ -106,6 +116,15 @@ class PhoneNoLoginActivity : AppCompatActivity() {
                     this,
                     mCallbacks)
 
+
+            progressBar.visibility = View.VISIBLE
+
+
+
+            txtLoginTextBoxTitle.isCursorVisible = false
+            txtLoginTextBoxTitle.isClickable = false
+            txtLoginTextBoxTitle.isFocusable = false
+            txtLoginTextBoxTitle.setText("Please Wait Verifing")
 
 
 
@@ -128,7 +147,7 @@ class PhoneNoLoginActivity : AppCompatActivity() {
 
         if  (currentUser!=null) {
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, GeneralMenuForSelectedCategoryActivity::class.java)
 
             startActivity(intent)
 
@@ -137,8 +156,6 @@ class PhoneNoLoginActivity : AppCompatActivity() {
 
         else{
 
-
-            txtLoginTextBoxTitle.text = "verify your code"
 
 
         }

@@ -63,8 +63,6 @@ class MenuDetailsActivity : AppCompatActivity() {
 
         layoutOfMenuDetailsItemsList.cardView1.setOnClickListener{
 
-            val withIntentToChangeToCartMenuActivity = Intent(this,CartMenuActivity::class.java)
-            startActivity(withIntentToChangeToCartMenuActivity)
 
 
         }
