@@ -21,7 +21,7 @@ class StandardMenuActivity : AppCompatActivity() {
 
 //        recViewStandardMenu.setBackgroundColor(Color.GREEN)
        recViewStandardMenu.layoutManager = LinearLayoutManager(this)
-        recViewStandardMenu.adapter = AdapterOfRecyclyerViewStandarMenu()
+       // recViewStandardMenu.adapter = AdapterOfRecyclyerViewStandarMenu()
 
 
 

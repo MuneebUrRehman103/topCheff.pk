@@ -7,7 +7,8 @@
     android:id="@+id/sideBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.themuneeb.myfristapp.SideBarActivity">
+    tools:context="com.example.themuneeb.myfristapp.SideBarActivity"
+    android:background="@color/cart_background_color2">
 
 
 
@@ -60,7 +61,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:title="Biryani Item"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
                     app:layout_collapseMode="parallax"
 
 
@@ -109,13 +111,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="6dp"
+                android:padding="3dp"
 
                 >
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:elevation="5dp"
                     app:cardBackgroundColor="@color/cardview_light_background"
                     app:cardUseCompatPadding="true">
@@ -130,7 +132,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:padding="8dp"
+                            android:padding="4dp"
                             android:text="Menu Item no 1"
                             android:textColor="@color/colorPrimary"
                             android:textSize="20sp"
@@ -192,74 +194,12 @@
 
                 </android.support.v7.widget.CardView>
 
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cardView1"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recViewForMenuDetail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="6dp"
-                    app:cardBackgroundColor="@color/cart_background_color"
-                    app:cardUseCompatPadding="true">
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:lineSpacingMultiplier="1.5"
-                        android:padding="12dp"
-                        android:text="Menu Item No 3 "
-                        android:textColor="@color/colorText"
-                        android:textSize="14sp" />
-
-
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cardView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="6dp"
-                    app:cardBackgroundColor="@color/cart_background_color"
-                    app:cardUseCompatPadding="true">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:lineSpacingMultiplier="1.5"
-                        android:padding="12dp"
-                        android:text="Menu Item No 3 "
-                        android:textColor="@color/cardview_light_background"
-                        android:textSize="14sp" />
-
-
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cardView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="6dp"
-                    app:cardBackgroundColor="@color/cart_background_color"
-                    app:cardUseCompatPadding="true">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:lineSpacingMultiplier="1.5"
-                        android:padding="12dp"
-                        android:text="Menu Item No 3 "
-                        android:textColor="@color/colorText"
-                        android:textSize="14sp" />
-
-
-                </android.support.v7.widget.CardView>
-
-
-
+                </android.support.v7.widget.RecyclerView>
 
 
             </LinearLayout>

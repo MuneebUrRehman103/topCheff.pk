@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.themuneeb.myfristapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StandardMenuActivity"></activity>
+        <activity android:name=".StandardMenuActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PhoneNoLoginActivity">
             <intent-filter>
@@ -20,13 +22,16 @@
         </activity>
         <activity android:name=".CateringActivity" />
         <activity android:name=".SideBarActivity" />
-        <activity android:name=".MenuDetailsActivity"></activity>
+        <activity android:name=".MenuDetailsActivity" />
         <activity android:name=".CartMenuActivity" />
         <activity
             android:name=".GeneralMenuForSelectedCategoryActivity"
             android:label="@string/title_activity_general_menu_for_selected_category_activity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".MainMenuActivity"></activity>
+        <activity android:name=".SelectedVendorsMenuActivity" />
+        <activity android:name=".RegisterUserActivity" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>

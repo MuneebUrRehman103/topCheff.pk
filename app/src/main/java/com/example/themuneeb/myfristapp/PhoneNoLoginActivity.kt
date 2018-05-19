@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentActivity
 import android.text.Editable
 import android.util.Log
 import android.view.View
+import com.example.themuneeb.myfristapp.Database.Database
+import com.example.themuneeb.myfristapp.Model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.activity_phone_no_login.*
@@ -22,6 +24,8 @@ import com.google.firebase.auth.PhoneAuthCredential
 class PhoneNoLoginActivity : AppCompatActivity() {
 
 
+
+
     private var mAuth = FirebaseAuth.getInstance()
 
 
@@ -30,10 +34,18 @@ class PhoneNoLoginActivity : AppCompatActivity() {
 
 
 
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_no_login)
 
-      val  mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+
+
+
+
+
+        val  mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
@@ -48,7 +60,7 @@ class PhoneNoLoginActivity : AppCompatActivity() {
 
                 val selectedMenuOptionName = "Catering"
 
-                val intent = Intent(this@PhoneNoLoginActivity,MainMenuActivity::class.java)
+                val intent = Intent(this@PhoneNoLoginActivity,RegisterUserActivity::class.java)
 
                 startActivity(intent)
 

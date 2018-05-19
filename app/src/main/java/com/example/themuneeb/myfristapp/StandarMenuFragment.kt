@@ -9,9 +9,14 @@ import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.themuneeb.myfristapp.Model.Menu
+import com.example.themuneeb.myfristapp.Model.MenuItem
+import com.example.themuneeb.myfristapp.Model.VendorDetail
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_standard_menu.*
 import kotlinx.android.synthetic.main.fragment_standar_menu.view.*
-
+import okhttp3.*
+import java.io.IOException
 
 /**
  * A simple [Fragment] subclass.
@@ -24,7 +29,20 @@ import kotlinx.android.synthetic.main.fragment_standar_menu.view.*
 class StandarMenuFragment : Fragment() {
 
 
+
+    var typeOfMenuToBeDisplayed = "MenuItems"
+
+    //typeOfMenuToBeDisplayed ::  VendorItems || MenuItems
+
+
+    val vendorIdToGetItsMenu = "2"
+    val urlToGetVendorItems = "http://topchef.pk/api/router.php?method=getCaterers&type=catering"
+    val urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendor&vendor="+vendorIdToGetItsMenu
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+
+        val args = arguments
 
 
         val view: View
@@ -32,12 +50,148 @@ class StandarMenuFragment : Fragment() {
         view = inflater.inflate(R.layout.fragment_standar_menu,container,false)
         view.recViewStandardMenu.layoutManager = LinearLayoutManager(activity)
 
-        view.recViewStandardMenu.adapter = AdapterOfRecyclyerViewStandarMenu()
+        if (args != null){
+            typeOfMenuToBeDisplayed = args.getString("typeOfMenu")
+        }
+        else{
+
+            typeOfMenuToBeDisplayed = "MenuItems"
+        }
+
+
+        // get api data for standar menu details from :: http://topchef.pk/api/router.php?method=getMenusByVendor&vendor=2
+
+
+        if ( typeOfMenuToBeDisplayed=="VendorItems" ){
+
+
+
+            createVendorItemsFragment()
+        }
+
+        if ( typeOfMenuToBeDisplayed=="MenuItems" ){
+
+
+            createMenuItemsFragment()
+        }
+
+
+
+
+
 
         return view
     }
 
 
+
+
+    fun createVendorItemsFragment(){
+
+
+
+        ///////////////////////////////////////
+
+
+        var menuItems : MenuItem? = null
+
+
+        val request = Request.Builder()
+                .url(urlToGetVendorItems)
+                .build()
+
+        var client = OkHttpClient()
+
+
+
+        client.newCall(request).enqueue(object : Callback {
+
+            override fun onResponse(call: Call?, response: Response?) {
+
+                val body = response?.body()?.string()
+                println(body)
+
+                val gson = GsonBuilder().create()
+
+                var  vendorDetails = gson.fromJson(body,VendorDetail::class.java)
+
+                this.run {
+
+                    activity.runOnUiThread {  recViewStandardMenu.adapter = com.example.themuneeb.myfristapp.ViewHolder.AdapterForRecyclerOfVendorMenu(vendorDetails)  }
+
+
+                }
+
+
+                println(menuItems)
+
+
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+            }
+
+
+        })
+
+    }
+
+
+
+
+
+
+
+
+    fun createMenuItemsFragment(){
+
+
+
+        ///////////////////////////////////////
+
+
+        var menuItems : MenuItem? = null
+
+        val request = Request.Builder()
+                .url(urlToGetMenuItems)
+                .build()
+
+        var client = OkHttpClient()
+
+
+
+        client.newCall(request).enqueue(object : Callback {
+
+            override fun onResponse(call: Call?, response: Response?) {
+
+                val body = response?.body()?.string()
+                println(body)
+
+                val gson = GsonBuilder().create()
+
+                var  menuItems = gson.fromJson(body,MenuItem::class.java)
+
+                this.run {
+
+                    activity.runOnUiThread {  recViewStandardMenu.adapter = AdapterOfRecyclyerViewStandarMenu(menuItems)  }
+
+
+                }
+
+
+                println(menuItems)
+
+
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+            }
+
+
+        })
+
+
+    }
 
 }
 

@@ -30,13 +30,34 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
         val adapterOfFragmentsForPagesOfTabsMenu = AdapterForGeneralMenuTabbedActvity(supportFragmentManager)
 
 
-        adapterOfFragmentsForPagesOfTabsMenu.addFragment(StandarMenuFragment(),"Standard Menu")
-        adapterOfFragmentsForPagesOfTabsMenu.addFragment(StandarMenuFragment(),"Vendor Menu")
+        val standardMenuFragment = StandarMenuFragment()
+
+        val argsForStandardMenu = Bundle()
+        argsForStandardMenu.putString("typeOfMenu","MenuItems")
+
+        standardMenuFragment.setArguments(argsForStandardMenu)
+
+/////////////////////////////
+
+        val vendorMenuFragment = StandarMenuFragment()
+
+        val argsForVendorMenu = Bundle()
+        argsForVendorMenu.putString("typeOfMenu","VendorItems")
+
+        vendorMenuFragment.setArguments(argsForVendorMenu)
+
+/////////////////////////////////
+
+        adapterOfFragmentsForPagesOfTabsMenu.addFragment(standardMenuFragment,"Standard Menu")
+        adapterOfFragmentsForPagesOfTabsMenu.addFragment(vendorMenuFragment,"Vendor Menu")
 
         pager.adapter = adapterOfFragmentsForPagesOfTabsMenu
 
 
         tabs.setupWithViewPager(pager)
+
+
+        // floating a button :: fab ::
 
 
         fab.setOnClickListener {

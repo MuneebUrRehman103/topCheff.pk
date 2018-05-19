@@ -1,5 +1,9 @@
 package com.example.themuneeb.myfristapp
 
+
+import java.io.IOException
+
+
 import android.content.DialogInterface
 import com.example.themuneeb.myfristapp.ViewHolder.AdapterOfRecyclerViewForCartMenu
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +17,10 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.themuneeb.myfristapp.Database.Database
 import kotlinx.android.synthetic.main.activity_cart_menu.*
+import android.os.AsyncTask.execute
+import okhttp3.*
+import okhttp3.RequestBody
+
 
 
 
@@ -37,13 +45,46 @@ class CartMenuActivity : AppCompatActivity() {
 
             btnSubmitOrder.setOnClickListener {
 
-
+                val formBody = FormBody.Builder()
+                        .add("key","12jk123jk12kj3bn4h")
+                        .add("receiver","muneeburrehman103@gmail.com")
+                        .add("subject","dasdasd")
+                        .add("message","dasdasd")
+                        .build()
 
                 showDialogBox()
 
 
+                val urlOfApiToEmailOrders = "http://topchef.pk/api/sendMail.php"
+
+                val JSON = MediaType.parse("application/json; charset=utf-8");
+
+                val paramsOfEmailToBeSent = "{'key':'12jk123jk12kj3bn4h','receiver':'muneeburrehman103@gmail.com','subject':'android works test','message':'tofcheff oreder details'}"
+                val bodyOfRequestForApi = RequestBody.create(JSON,paramsOfEmailToBeSent)
+
+                val request = Request.Builder()
+                        .url(urlOfApiToEmailOrders)
+                        .post(formBody)
+                        .addHeader("content-type","application/x-www-form-urlencoded")
+                        .build()
+
+                var client = OkHttpClient()
+
+                client.newCall(request).enqueue(object : Callback{
+
+                    override fun onResponse(call: Call?, response: Response?) {
+
+                        val body = response?.body()?.string()
+                        println(body)
 
 
+                    }
+
+                    override fun onFailure(call: Call?, e: IOException?) {
+                    }
+
+
+                })
 
             }
 
@@ -82,16 +123,45 @@ class CartMenuActivity : AppCompatActivity() {
 
 
 
-            val database = Database(this)
-            database.removeAllItemsFromCart()
+
+                //////////////////////////////////////////////////////////////////////
+
+
+              //  val addressForTheOrder = txtBoxForAddress.text.toString()
+
+//                val urlOfApiToEmailOrders = "http://topchef.pk/api/sendMail.php"
+//
+//                val JSON = MediaType.parse("application/json;charset=urf-8")
+//                val paramsOfEmailToBeSent = "{'key':'12jk123jk12kj3bn4h','receiver':'muneeburrehman103@gmail.com','subject':'android works test','message':'tofcheff oreder details'}"
+//                val bodyOfRequestForApi = RequestBody.create(JSON,paramsOfEmailToBeSent)
+//
+//                val request = Request.Builder()
+//                        .url(urlOfApiToEmailOrders)
+//                        .post(bodyOfRequestForApi)
+//                        .build()
+//
+//                val client = OkHttpClient()
+//
+//               val response = client.newCall(request).execute()
+//
+//                val orderSentResponseText = response.body().toString()
+//
+//                print(orderSentResponseText)
+
+                //////////////////////////////////////////////////////////////////////
+
+                Toast.makeText(
+                        this,
+                        "Success : Your Order Has Been Placed,You Will Be Contacted Shortly ",
+                        Toast.LENGTH_LONG
+                ).show()
 
 
 
-            Toast.makeText(
-                    this,
-                    "Your Order Has Been Placed,You Will Be Contacted Shorlty ",
-                    Toast.LENGTH_LONG
-            ).show()
+                val database = Database(this)
+                database.removeAllItemsFromCart()
+
+
 
         })
 

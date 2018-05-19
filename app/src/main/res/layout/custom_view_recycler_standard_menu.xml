@@ -6,54 +6,67 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
+    android:id="@+id/cardForMenuItem"
     android:layout_width="match_parent"
+
+
     android:layout_height="wrap_content"
-
-
+    android:layout_margin="18dp"
     app:cardBackgroundColor="@color/cart_background_color2"
-    app:cardCornerRadius="2dp"
-    app:cardElevation="6dp"
-    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
 
-    >
+    app:cardElevation="6dp">
 
 
     <LinearLayout
-        android:id="@+id/LinearLayout1"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="26dp"
-        android:layout_marginLeft="12dp"
-
-        android:orientation="horizontal"
+        android:id="@+id/linearLayoutForMenuDetail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
 
-
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
 
         <LinearLayout
-            android:id="@+id/LinearLayout2"
-            android:orientation="vertical"
-            android:layout_weight="9"
+            android:id="@+id/linearLayoutContainingMenuTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:orientation="vertical"
 
 
             >
 
             <TextView
                 android:id="@+id/txtItemName"
-                android:textColor="@color/white"
-                android:text="PizzaHut Deal no 1 : Tikka | Fajita | Seekh | Kabab | Pizza Included"
-                android:textSize="18sp"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:layout_gravity="left|center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:text="PizzaHut Deal no 1 :"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="14dp"
+                />
+            <TextView
+                android:id="@+id/txtItemDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:text="Tikka | Fajita | Seekh | Kabab | Pizza Included"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:layout_marginBottom="14dp"
 
+                />
 
             <LinearLayout
+                android:id="@+id/linearLayoutContaingMenuInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -61,56 +74,54 @@
 
                 <TextView
                     android:id="@+id/txtPerPerson"
-                    android:text="10:PersonsDeal"
-                    android:textSize="9sp"
-                    android:textColor="@color/textColor1Orange"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:layout_weight="2"
-                    android:layout_gravity="left|center_vertical"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_weight="2"
+                    android:text="10:PersonsDeal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor1Orange"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtCategory"
-                    android:text="Pizza Category"
-                    android:textSize="9sp"
-                    android:textColor="@color/textColor1Orange"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:layout_weight="2"
-                    android:layout_marginLeft="4dp"
-                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="2"
+                    android:text="Pizza Category"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor1Orange"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtPrice"
-                    android:text="1000 Rs"
-                    android:textSize="9sp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end|center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:text="1000 Rs"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
-
 
 
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imgInCartRight"
-            android:layout_gravity="left"
-
-            android:layout_marginRight="12dp"
+            android:id="@+id/imgInCardRight"
             android:layout_width="34dp"
+
             android:layout_height="34dp"
-            android:src="@drawable/cart_rightside_image"
-            />
+            android:layout_gravity="left"
+            android:layout_marginRight="12dp"
+            android:src="@drawable/cart_rightside_image" />
 
     </LinearLayout>
 

@@ -23,5 +23,7 @@
     <color name="cart_background_color">#fa9e13</color>
     <color name="cart_background_color1">#fa9e13</color>
     <color name="cart_background_color2">#229924</color>
+    <color name="cart_background_color3">#256091</color>
+    <color name="cart_background_color4">#20b2aa</color>
 
 </resources>

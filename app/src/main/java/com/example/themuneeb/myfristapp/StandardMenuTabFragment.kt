@@ -31,7 +31,7 @@ class StandardMenuTabFragment : Fragment() {
         view = inflater.inflate(R.layout.fragment_standar_menu,container,false)
         view.recViewStandardMenu.layoutManager = LinearLayoutManager(activity)
 
-        view.recViewStandardMenu.adapter = AdapterOfRecyclyerViewStandarMenu()
+      //  view.recViewStandardMenu.adapter = AdapterOfRecyclyerViewStandarMenu()
 
         return view
     }
