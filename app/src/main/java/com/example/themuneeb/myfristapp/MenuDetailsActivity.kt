@@ -3,6 +3,7 @@ package com.example.themuneeb.myfristapp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
@@ -14,14 +15,15 @@ import com.example.themuneeb.myfristapp.ViewHolder.AdapterForMenuDetailsActivity
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_menu_details.*
 import kotlinx.android.synthetic.main.activity_menu_details.view.*
-import kotlinx.android.synthetic.main.fragment_standar_menu.view.*
+import kotlinx.android.synthetic.main.activity_menu_details.view.sideBar
+
 import okhttp3.*
 import java.io.IOException
 
 
 class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
 
-     init {
+    init {
 
     }
 
@@ -29,12 +31,10 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
     var itemHasNotBeenAdded = true
 
 
-
     var menuIdToFetchItsItems = menuId
     var totalPriceForMenu = 1500
 
-    var menuItemsFetchedFromApi : MenuItemDetail? = null
-
+    var menuItemsFetchedFromApi: MenuItemDetail? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,17 +42,50 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
         setContentView(R.layout.activity_menu_details)
 
 
+
+
+        navView.setNavigationItemSelectedListener { menuItem ->
+
+            val itemId = menuItem.itemId
+
+            if (menuItem.toString() == "Profile") {
+                // profile
+
+                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+
+            }
+            if (menuItem.toString() == "My Order") {
+                // myOrders
+
+                Toast.makeText(this, "My orders" , Toast.LENGTH_SHORT).show()
+
+            }
+            if (menuItem.toString() == "Chat" ) {
+                // Chat
+
+                Toast.makeText(this, "Chat" , Toast.LENGTH_SHORT).show()
+
+            }
+            if (menuItem.toString() == "Logout") {
+                // Logout
+
+                Toast.makeText(this, "Logout" , Toast.LENGTH_SHORT).show()
+
+            }
+
+
+
+          true
+        }
+
         // get api data for standard menu details from :: http://topchef.pk/api/router.php?method=getMenusByVendor&vendor=2
-
-
-
 
 
         btnElegantNumber.setOnClickListener(View.OnClickListener {
 
-            val num =  btnElegantNumber.number
+            val num = btnElegantNumber.number
 
-            Toast.makeText(this, "Already Added To Cart: " +num, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Already Added To Cart: " + num, Toast.LENGTH_SHORT).show()
 
         })
 
@@ -60,7 +93,7 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
 
 
 
-        btnAddToCart.setOnClickListener{
+        btnAddToCart.setOnClickListener {
 
 
             if (itemHasNotBeenAdded) {
@@ -78,7 +111,7 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
                 val price = "1000"
                 val discount = "0"
 
-                val order = Order(productId,productName,quantity,price,discount)
+                val order = Order(productId, productName, quantity, price, discount)
 
                 database.addItemsToCart(order)
 
@@ -86,10 +119,7 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
                 Toast.makeText(this, "Added To Cart", Toast.LENGTH_SHORT).show()
 
 
-
-
-            }
-            else{
+            } else {
 
 
                 Toast.makeText(this, "Already Added To Cart", Toast.LENGTH_SHORT).show()
@@ -97,7 +127,7 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
 
             }
 
-          this.itemHasNotBeenAdded = false
+            this.itemHasNotBeenAdded = false
 
         }
 
@@ -105,13 +135,10 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
         recViewForMenuDetail.layoutManager = LinearLayoutManager(this)
 
 
-
         ///////////////////////////////////////
 
 
-
-
-        val urlToGetMenuForSpecificCaterers = "http://topchef.pk/api/router.php?method=getMenusDetails&menu="+menuIdToFetchItsItems
+        val urlToGetMenuForSpecificCaterers = "http://topchef.pk/api/router.php?method=getMenusDetails&menu=" + menuIdToFetchItsItems
 
         val request = Request.Builder()
                 .url(urlToGetMenuForSpecificCaterers)
@@ -130,7 +157,7 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
 
                 val gson = GsonBuilder().create()
 
-                var  menuItemDetails = gson.fromJson(body, MenuItemDetail::class.java)
+                var menuItemDetails = gson.fromJson(body, MenuItemDetail::class.java)
 
                 menuItemsFetchedFromApi = menuItemDetails
 
@@ -157,15 +184,18 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
         })
 
 
-
-
-
-
-
         //////////////////////////////////////////
 
 
-
     }
+
+
+
+
+
+
+
+
+
 
 }

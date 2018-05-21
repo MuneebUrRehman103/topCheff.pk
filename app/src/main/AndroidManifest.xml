@@ -22,7 +22,9 @@
         </activity>
         <activity android:name=".CateringActivity" />
         <activity android:name=".SideBarActivity" />
-        <activity android:name=".MenuDetailsActivity" />
+        <activity android:name=".MenuDetailsActivity" >
+
+        </activity>
         <activity android:name=".CartMenuActivity" />
         <activity
             android:name=".GeneralMenuForSelectedCategoryActivity"
@@ -31,7 +33,11 @@
         <activity android:name=".MainMenuActivity"></activity>
         <activity android:name=".SelectedVendorsMenuActivity" />
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity">
+
+
+
+        </activity>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
+import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.Menu
@@ -21,10 +22,13 @@ import kotlinx.android.synthetic.main.activity_general_menu_for_selected_categor
 class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_menu_for_selected_category)
+
+
+
+
 
 
         val adapterOfFragmentsForPagesOfTabsMenu = AdapterForGeneralMenuTabbedActvity(supportFragmentManager)
@@ -70,5 +74,15 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
         }
 
     }
+
+
+
+
+
+
+
+
+
+
 
 }

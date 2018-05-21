@@ -18,10 +18,11 @@ import android.widget.Toast
 import com.example.themuneeb.myfristapp.Database.Database
 import kotlinx.android.synthetic.main.activity_cart_menu.*
 import android.os.AsyncTask.execute
+import com.google.firebase.database.FirebaseDatabase
 import okhttp3.*
 import okhttp3.RequestBody
-
-
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class CartMenuActivity : AppCompatActivity() {
@@ -121,10 +122,12 @@ class CartMenuActivity : AppCompatActivity() {
 
         alert.setPositiveButton("Yes",DialogInterface.OnClickListener{dialog, which ->
 
+            val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            val currentDate = sdf.format(Date())
 
 
 
-                //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
 
 
               //  val addressForTheOrder = txtBoxForAddress.text.toString()
@@ -161,6 +164,9 @@ class CartMenuActivity : AppCompatActivity() {
                 val database = Database(this)
                 database.removeAllItemsFromCart()
 
+            placeUsersOrderWithUserDetailsInFirebase("103","002","Malai Boti")
+
+
 
 
         })
@@ -183,5 +189,21 @@ class CartMenuActivity : AppCompatActivity() {
 
 
     }
+
+
+
+
+
+
+    fun placeUsersOrderWithUserDetailsInFirebase(userId : String , orderId : String ,orderTitle : String){
+
+        val firebaseDatabaseRef = FirebaseDatabase.getInstance().getReference("orders")
+
+
+        firebaseDatabaseRef.child(userId).child(orderId).child("order_name").setValue(orderTitle)
+
+
+    }
+
 
 }

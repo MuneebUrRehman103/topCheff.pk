@@ -11,16 +11,20 @@ android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 tools:context="com.example.themuneeb.myfristapp.ChatActivity">
 
+
+
 <android.support.design.widget.FloatingActionButton
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:src="@drawable/com_facebook_button_icon"
-    android:id="@+id/fab"
+    android:src="@drawable/logo_top_cheff"
+    android:id="@+id/btnSendMessage"
     android:tint="@android:color/white"
     android:layout_alignParentBottom="true"
     android:layout_alignParentEnd="true"
-    app:fabSize="mini" />
+    app:fabSize="mini"
+    app:useCompatPadding="true"
+    />
 
 <android.support.design.widget.TextInputLayout
     android:layout_width="match_parent"
@@ -30,21 +34,23 @@ tools:context="com.example.themuneeb.myfristapp.ChatActivity">
     android:layout_alignParentStart="true">
 
     <EditText
-        android:layout_width="match_parent"
+
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:hint="Input"
-        android:id="@+id/input"
+        android:id="@+id/txtMessageByUser"
+        android:layout_marginBottom="15dp"
         />
 </android.support.design.widget.TextInputLayout>
 
-<ListView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true"
-    android:layout_above="@id/fab"
-    android:dividerHeight="16dp"
-    android:divider="@android:color/transparent"
-    android:id="@+id/list_of_messages"
-    android:layout_marginBottom="16dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recViewToViewAllMessages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnSendMessage"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+
+        android:divider="@android:color/transparent"
+        android:dividerHeight="16dp" />
 </RelativeLayout>

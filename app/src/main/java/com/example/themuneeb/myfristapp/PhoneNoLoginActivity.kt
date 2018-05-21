@@ -17,8 +17,7 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
-
-
+import com.google.firebase.database.FirebaseDatabase
 
 
 class PhoneNoLoginActivity : AppCompatActivity() {
@@ -64,6 +63,7 @@ class PhoneNoLoginActivity : AppCompatActivity() {
 
                 startActivity(intent)
 
+                enterUserNameAndUseridInFireBase("103","Muneeb103")
 
 
             }
@@ -182,6 +182,15 @@ class PhoneNoLoginActivity : AppCompatActivity() {
 
 
 
+    fun enterUserNameAndUseridInFireBase(userId : String , userName : String) {
+
+        val firebaseDatabaseRef = FirebaseDatabase.getInstance().getReference("orders")
+
+
+        firebaseDatabaseRef.child(userId).child("user_name").setValue(userName)
+
+
+    }
 
 
 }
