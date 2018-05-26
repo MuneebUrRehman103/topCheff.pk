@@ -21,7 +21,7 @@ import okhttp3.*
 import java.io.IOException
 
 
-class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
+class MenuDetailsActivity(menuId: String = "1") : AppCompatActivity() {
 
     init {
 
@@ -36,50 +36,34 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
 
     var menuItemsFetchedFromApi: MenuItemDetail? = null
 
+    var menuTitleFetched = "Biryani Deal no 1"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_details)
 
+        ///////////////////////////////////
+
+
+        addingListenerForElegantNumberButton()
+
+        addingListenerForAddToCartButton()
+
+        fetchDataForRecViewOfMenuDetail(menuIdToFetchItsItems)
+
+        settingUpTheOptionsOfSidebarsNavView()
+
+        ///////////////////////////////////
 
 
 
-        navView.setNavigationItemSelectedListener { menuItem ->
+        collapsingToolbarLayoutForMenuDetail.title = menuTitleFetched
 
-            val itemId = menuItem.itemId
-
-            if (menuItem.toString() == "Profile") {
-                // profile
-
-                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
-
-            }
-            if (menuItem.toString() == "My Order") {
-                // myOrders
-
-                Toast.makeText(this, "My orders" , Toast.LENGTH_SHORT).show()
-
-            }
-            if (menuItem.toString() == "Chat" ) {
-                // Chat
-
-                Toast.makeText(this, "Chat" , Toast.LENGTH_SHORT).show()
-
-            }
-            if (menuItem.toString() == "Logout") {
-                // Logout
-
-                Toast.makeText(this, "Logout" , Toast.LENGTH_SHORT).show()
-
-            }
+    }
 
 
-
-          true
-        }
-
-        // get api data for standard menu details from :: http://topchef.pk/api/router.php?method=getMenusByVendor&vendor=2
-
+    fun addingListenerForElegantNumberButton() {
 
         btnElegantNumber.setOnClickListener(View.OnClickListener {
 
@@ -89,8 +73,10 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
 
         })
 
+    }
 
 
+    fun addingListenerForAddToCartButton() {
 
 
         btnAddToCart.setOnClickListener {
@@ -132,13 +118,19 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
         }
 
 
+    }
+
+
+    fun fetchDataForRecViewOfMenuDetail(menuidToFetchItsItems: String) {
+
+
         recViewForMenuDetail.layoutManager = LinearLayoutManager(this)
 
 
         ///////////////////////////////////////
 
 
-        val urlToGetMenuForSpecificCaterers = "http://topchef.pk/api/router.php?method=getMenusDetails&menu=" + menuIdToFetchItsItems
+        val urlToGetMenuForSpecificCaterers = "http://topchef.pk/api/router.php?method=getMenusDetails&menu=" + menuidToFetchItsItems
 
         val request = Request.Builder()
                 .url(urlToGetMenuForSpecificCaterers)
@@ -184,18 +176,51 @@ class MenuDetailsActivity(menuId : String = "1") : AppCompatActivity() {
         })
 
 
-        //////////////////////////////////////////
-
-
     }
 
 
+    fun settingUpTheOptionsOfSidebarsNavView() {
+
+        navView.setNavigationItemSelectedListener { menuItem ->
+
+            val itemId = menuItem.itemId
+
+            if (menuItem.toString() == "Profile") {
+                // profile
+
+                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+
+            }
+            if (menuItem.toString() == "My Order") {
+                // myOrders
+
+                Toast.makeText(this, "My orders", Toast.LENGTH_SHORT).show()
+
+            }
+            if (menuItem.toString() == "Chat") {
+                // Chat
+
+
+                val withIntentToChangeToChatActivity = Intent(this, ChatActivity::class.java)
+                startActivity(withIntentToChangeToChatActivity)
+
+
+                //  Toast.makeText(this, "Chat" , Toast.LENGTH_SHORT).show()
+
+            }
+            if (menuItem.toString() == "Logout") {
+                // Logout
+
+                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
+
+            }
 
 
 
+            true
+        }
 
-
-
+    }
 
 
 }

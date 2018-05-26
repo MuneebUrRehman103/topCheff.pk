@@ -15,6 +15,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="CollapsingAppBar" parent="@style/TextAppearance.AppCompat.Title" >
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/cart_background_color1</item>
+        <item name="android:textStyle">normal|bold</item>
+    </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

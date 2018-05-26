@@ -76,7 +76,15 @@
             app:srcCompat="@drawable/add_to_cart_image" />
 
 
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnToOpenChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|bottom"
+            android:layout_margin="@dimen/fab_margin"
+            android:backgroundTint="#ffffff"
+            app:borderWidth="0dp"
+            app:srcCompat="@drawable/logo_top_cheff" />
 
 
 

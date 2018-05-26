@@ -73,6 +73,18 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
 
         }
 
+
+
+        btnToOpenChat.setOnClickListener {
+
+
+            val withIntentToChangeToChatActivity = Intent(this,ChatActivity::class.java)
+            startActivity(withIntentToChangeToChatActivity)
+
+
+        }
+
+
     }
 
 
