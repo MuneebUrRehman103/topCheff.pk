@@ -27,6 +27,7 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_general_menu_for_selected_category)
 
 
+        var selectedMenuOptionName = intent.getStringExtra("selectedMenuOptionName")
 
 
 
@@ -38,6 +39,7 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
 
         val argsForStandardMenu = Bundle()
         argsForStandardMenu.putString("typeOfMenu","MenuItems")
+        argsForStandardMenu.putString("categoryOfMenuSelected",selectedMenuOptionName.toString())
 
         standardMenuFragment.setArguments(argsForStandardMenu)
 
@@ -47,6 +49,7 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
 
         val argsForVendorMenu = Bundle()
         argsForVendorMenu.putString("typeOfMenu","VendorItems")
+        argsForStandardMenu.putString("categoryOfMenuSelected",selectedMenuOptionName.toString())
 
         vendorMenuFragment.setArguments(argsForVendorMenu)
 

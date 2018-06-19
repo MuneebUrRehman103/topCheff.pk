@@ -15,6 +15,9 @@ class SelectedVendorsMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_general_menu_for_selected_category)
 
 
+        var vendorId = intent.getStringExtra("vendorId")
+
+
         val adapterOfFragmentsForPagesOfTabsMenu = AdapterForGeneralMenuTabbedActvity(supportFragmentManager)
 
 /////////////////////////////
@@ -22,7 +25,8 @@ class SelectedVendorsMenuActivity : AppCompatActivity() {
         val standardMenuFragment = StandarMenuFragment()
 
         val argsForStandardMenu = Bundle()
-        argsForStandardMenu.putString("typeOfMenu","MenuItems")
+        argsForStandardMenu.putString("typeOfMenu","VendorItemsSelectedMenu")
+        argsForStandardMenu.putString("vendorIdBySelectingVendor",vendorId)
 
         standardMenuFragment.arguments = argsForStandardMenu
 

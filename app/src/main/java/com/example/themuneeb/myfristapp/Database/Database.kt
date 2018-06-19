@@ -11,7 +11,7 @@ import com.example.themuneeb.myfristapp.Model.Order
 import com.example.themuneeb.myfristapp.Model.User
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 
-private val DBName = "topCheffDB.db"
+private val DBName = "topCheffDatabase2.db"
 private val DBVersion = 1
 
 class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBVersion) {
@@ -22,27 +22,25 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
     // task 1 : make getAddedMenuItemsFromCart  method and collect all the items in the array of type orders that will be
     // returned to who ever will call it
 
-    fun getItemsAddedToCart () : List<Order> {
+    fun getItemsAddedToCart(): List<Order> {
 
-        var listOfOrdersThatAreAdded : MutableList<Order> = arrayListOf()
+        var listOfOrdersThatAreAdded: MutableList<Order> = arrayListOf()
 
-        val databaseInstance : SQLiteDatabase = readableDatabase
+        val databaseInstance: SQLiteDatabase = readableDatabase
 
         val query = "SELECT * FROM OrderDetail ; "
 
 
-        val cursorOfTheRowsReturnedFromDatabase = databaseInstance.rawQuery(query,null)
+        val cursorOfTheRowsReturnedFromDatabase = databaseInstance.rawQuery(query, null)
 
 
 
 
 
-        if (cursorOfTheRowsReturnedFromDatabase.count != 0){
+        if (cursorOfTheRowsReturnedFromDatabase.count != 0) {
 
             cursorOfTheRowsReturnedFromDatabase.moveToFirst()
-            do{
-
-
+            do {
 
 
                 var productId = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("ProductId"))
@@ -52,7 +50,7 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
                 var productPrice = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("Price"))
 
 
-                var order = Order(productId,productName,productQuantity,productPrice,productDiscount)
+                var order = Order(productId, productName, productQuantity, productPrice, productDiscount)
 
 
                 val name = productName
@@ -61,7 +59,7 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
 
                 listOfOrdersThatAreAdded.add(order)
 
-            }while(cursorOfTheRowsReturnedFromDatabase.moveToNext())
+            } while (cursorOfTheRowsReturnedFromDatabase.moveToNext())
 
         }
 
@@ -70,7 +68,6 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
         return listOfOrdersThatAreAdded
 
     }
-
 
 
     //Task 2 : addItemsToCart Method
@@ -102,32 +99,30 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
     }
 
 
-
     //Task 4 : call the above methods from the cart button in menudetails activity
 
 
+    fun getUserRegisterDetail(): List<User> {
 
-    fun getUserRegisterDetail () : User {
+        var usersRegisteredInDataabase: MutableList<User> = arrayListOf()
 
-        var userData = User("","","","","")
+        var userData = User("", "", "", "", "")
 
-        val databaseInstance : SQLiteDatabase = readableDatabase
+        val databaseInstance: SQLiteDatabase = readableDatabase
 
         val query = "SELECT * FROM UserRegisterInfo ; "
 
 
-        val cursorOfTheRowsReturnedFromDatabase = databaseInstance.rawQuery(query,null)
+        val cursorOfTheRowsReturnedFromDatabase = databaseInstance.rawQuery(query, null)
 
 
 
 
 
-        if (cursorOfTheRowsReturnedFromDatabase.count != 0){
+        if (cursorOfTheRowsReturnedFromDatabase.count != 0) {
 
             cursorOfTheRowsReturnedFromDatabase.moveToFirst()
-            do{
-
-
+            do {
 
 
                 var username = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("username"))
@@ -137,32 +132,123 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
                 var address = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("address"))
 
 
-               userData = User(username,email,password,phoneno,address)
+                userData = User(username, email, password, phoneno, address)
 
 
-            }while(cursorOfTheRowsReturnedFromDatabase.moveToNext())
+                usersRegisteredInDataabase.add(userData)
+
+            } while (cursorOfTheRowsReturnedFromDatabase.moveToNext())
 
         }
 
 
 
-        return userData
+        return usersRegisteredInDataabase
 
     }
+
+
+    fun getUserSessionId(): String {
+
+        val databaseInstance: SQLiteDatabase = readableDatabase
+
+        val query = "SELECT userId FROM UserRegisterInfo ; "
+
+
+        val cursorOfTheRowsReturnedFromDatabase = databaseInstance.rawQuery(query, null)
+
+        var userId = "null"
+
+
+
+        if (cursorOfTheRowsReturnedFromDatabase.count != 0) {
+
+            cursorOfTheRowsReturnedFromDatabase.moveToFirst()
+            do {
+
+
+                var userIdFromDatabase = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("userId"))
+
+
+                if (userIdFromDatabase != null){
+
+                userId = userIdFromDatabase.toString()}
+
+            } while (cursorOfTheRowsReturnedFromDatabase.moveToNext())
+
+        }
+
+
+
+        return userId
+
+    }
+
+
+
+
+    fun getUserId(): String {
+
+        val databaseInstance: SQLiteDatabase = readableDatabase
+
+        val query = "SELECT phoneno FROM UserRegisterInfo ; "
+
+
+        val cursorOfTheRowsReturnedFromDatabase = databaseInstance.rawQuery(query, null)
+
+        var userId = "null"
+
+
+
+        if (cursorOfTheRowsReturnedFromDatabase.count != 0) {
+
+            cursorOfTheRowsReturnedFromDatabase.moveToFirst()
+            do {
+
+
+                var userIdFromDatabase = cursorOfTheRowsReturnedFromDatabase.getString(cursorOfTheRowsReturnedFromDatabase.getColumnIndex("phoneno"))
+
+                if (userIdFromDatabase != null){
+
+                userId = userIdFromDatabase.toString()}
+
+            } while (cursorOfTheRowsReturnedFromDatabase.moveToNext())
+
+        }
+
+
+
+        return userId
+
+    }
+
 
 
 
     //Task 2 : addItemsToCart Method
 
 
-    fun addUserRegisterDetail(username : String , email : String , password : String , phoneno : String , address : String) {
+    fun addUserRegisterDetail(userid: String, username: String, email: String, password: String, phoneno: String, address: String) {
 
 
         val databaseInstance = writableDatabase
 
-        val queryForInsertingUser = "INSERT INTO UserRegisterInfo(username,email,password,phoneno,address) VALUES ('${username}','${email}','${password}','${phoneno}', '${address}' ); "
+        val queryForInsertingUser = "INSERT INTO UserRegisterInfo(userId,username,email,password,phoneno,address) VALUES ('${userid}','${username}','${email}','${password}','${phoneno}', '${address}' ); "
 
         databaseInstance.execSQL(queryForInsertingUser)
+
+
+    }
+
+
+    fun updateUserSessionId(userid: String) {
+
+
+        val databaseInstance = writableDatabase
+
+        val queryForUpdatingUserId = "UPDATE UserRegisterInfo set userId = '${userid}' ; "
+
+        databaseInstance.execSQL(queryForUpdatingUserId)
 
 
     }
@@ -179,9 +265,6 @@ class Database(context: Context?) : SQLiteAssetHelper(context, DBName, null, DBV
         databaseInstance.execSQL(queryForDeletingUserRegisterInfo)
 
     }
-
-
-
 
 
 }

@@ -17,131 +17,23 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 
 class PhoneNoLoginActivity : AppCompatActivity() {
 
 
-
-
     private var mAuth = FirebaseAuth.getInstance()
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-
 
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_no_login)
 
 
-
-
-
-
-
-        val  mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-
-                progressBar.visibility = View.INVISIBLE
-
-
-                txtLoginTextBoxTitle.isCursorVisible = false
-                txtLoginTextBoxTitle.isClickable = false
-                txtLoginTextBoxTitle.isFocusable = false
-
-                txtLoginTextBoxTitle.setText("Verification Code Received")
-
-                val selectedMenuOptionName = "Catering"
-
-                val intent = Intent(this@PhoneNoLoginActivity,RegisterUserActivity::class.java)
-
-                startActivity(intent)
-
-                enterUserNameAndUseridInFireBase("103","Muneeb103")
-
-
-            }
-
-            override fun onVerificationFailed(e: FirebaseException) {
-                // This callback is invoked in an invalid request for verification is made,
-                // for instance if the the phone number format is not valid.
-
-
-            }
-
-
-        }
-
-//        override fun onCodeSent(verificationId: String?,
-//                                token: PhoneAuthProvider.ForceResendingToken?) {
-//            // The SMS verification code has been sent to the provided phone number, we
-//            // now need to ask the user to enter the code and then construct a credential
-//            // by combining the code with a verification ID.
-//            Log.d(FragmentActivity.TAG, "onCodeSent:" + verificationId!!)
-//
-//            // Save verification ID and resending token so we can use them later
-//            mVerificationId = verificationId
-//            mResendToken = token
-//
-//            // ...
-//        }
-
-
-
-////      private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-//        mAuth.signInWithCredential(credential)
-//                .addOnCompleteListener(this) { task ->
-//                    if (task.isSuccessful) {
-//                        // Sign in success, update UI with the signed-in user's information
-//                        showSnackbar("signInWithCredential:success")
-//  } else {
-//                        // Sign in failed, display a message and update the UI
-//                        showSnackbar("signInWithCredential:failure")
-//                        if (task.exception is FirebaseAuthInvalidCredentialsException) {
-//                            // The verification code entered was invalid
-//                            showSnackbar("Invalid code was entered")
-//                        }
-//                        // Sign in failed
-//                    }
-//                }
-//    }
-
-
-
-
-
-
-        btnLogin.setOnClickListener {
-
-            val phoneNumber = txtLoginTextBoxTitle.text.toString()
-
-            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                    phoneNumber,
-                    60,
-                    TimeUnit.SECONDS,
-                    this,
-                    mCallbacks)
-
-
-            progressBar.visibility = View.VISIBLE
-
-
-
-            txtLoginTextBoxTitle.isCursorVisible = false
-            txtLoginTextBoxTitle.isClickable = false
-            txtLoginTextBoxTitle.isFocusable = false
-            txtLoginTextBoxTitle.setText("Please Wait Verifing")
-
-
-
-        }
-
+       var isUserLoggedIn = checkIfUserIsAlreadySignedIn()
 
 
 
@@ -157,37 +49,264 @@ class PhoneNoLoginActivity : AppCompatActivity() {
         val currentUser = mAuth.getCurrentUser()
 
 
-        if  (currentUser!=null) {
+        if (currentUser != null) {
 
             val intent = Intent(this, GeneralMenuForSelectedCategoryActivity::class.java)
 
             startActivity(intent)
 
 
-        }
-
-        else{
-
+        } else {
 
 
         }
-
-
-
 
 
     }
 
 
+    fun checkIfUserIsAlreadySignedIn(): Boolean {
+
+            val database = Database(this)
+
+            val sessionIdOfUserFromDatabase = database.getUserSessionId()
+            val userIdFromDatabase = database.getUserId()
+
+            var sessionMatches = false
+
+            if (sessionIdOfUserFromDatabase != null) {
+
+
+                val firebaseInst = FirebaseDatabase.getInstance().getReference("Users")
+
+
+                firebaseInst.child(userIdFromDatabase).child("unwantedKey").setValue("786")
+
+                firebaseInst.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError?) {
+                    }
+
+                    override fun onDataChange(dataSnapshot: DataSnapshot?) {
+
+
+                        val keyValuePairForUserId = dataSnapshot?.value as HashMap<String, Any>
+
+                        val hashMapValuesUnderUserId = keyValuePairForUserId[userIdFromDatabase] as HashMap<String, Any>
+
+                        val sessionIdValueFromFirebase = hashMapValuesUnderUserId["sessionId"]
+
+
+                        if (sessionIdOfUserFromDatabase == sessionIdValueFromFirebase.toString()) {
+
+
+                            sessionMatches = true
+
+
+                            val intent = Intent(this@PhoneNoLoginActivity, MainMenuActivity::class.java)
+
+                            startActivity(intent)
 
 
 
-    fun enterUserNameAndUseridInFireBase(userId : String , userName : String) {
-
-        val firebaseDatabaseRef = FirebaseDatabase.getInstance().getReference("orders")
+                            firebaseInst.removeEventListener(this)
 
 
-        firebaseDatabaseRef.child(userId).child("user_name").setValue(userName)
+                        }else{
+
+                            btnLogin.setOnClickListener {
+
+                                val phoneNumber = txtLoginTextBoxTitle.text.toString()
+
+                                verifyUsersPhoneNumber(phoneNumber)
+
+
+                                enterUserInFirebaseViaUserIdIEPhoneno("03122685832")
+
+                            }
+
+                            firebaseInst.removeEventListener(this)
+                        }
+
+
+                    }
+
+
+                })
+
+
+
+                return sessionMatches
+
+            } else {
+
+
+                return sessionMatches
+
+
+            }
+
+
+    }
+
+
+    fun verifyUsersPhoneNumber(phoneNo: String) {
+
+
+        val mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+
+                progressBar.visibility = View.INVISIBLE
+
+
+                txtLoginTextBoxTitle.isCursorVisible = false
+                txtLoginTextBoxTitle.isClickable = false
+                txtLoginTextBoxTitle.isFocusable = false
+
+                txtLoginTextBoxTitle.setText("Verification Code Received")
+
+                val selectedMenuOptionName = "Catering"
+
+
+                enterUserInFirebaseViaUserIdIEPhoneno(phoneNo)
+
+
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+                // This callback is invoked in an invalid request for verification is made,
+                // for instance if the the phone number format is not valid.
+
+
+            }
+
+
+//            override fun onCodeSent(verificationId: String?, p1: PhoneAuthProvider.ForceResendingToken?) {
+//                super.onCodeSent(verificationId, p1)
+//
+//
+//                //   The SMS verification code has been sent to the provided phone number, we
+//                // now need to ask the user to enter the code and then construct a credential
+//                // by combining the code with a verification ID
+//                print("onCodeSent:" + verificationId!!)
+//
+//
+//            }
+
+        }
+
+
+
+
+
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNo,
+                60,
+                TimeUnit.SECONDS,
+                this,
+                mCallbacks)
+
+
+        progressBar.visibility = View.VISIBLE
+
+
+
+        txtLoginTextBoxTitle.isCursorVisible = false
+        txtLoginTextBoxTitle.isClickable = false
+        txtLoginTextBoxTitle.isFocusable = false
+        txtLoginTextBoxTitle.setText("Please Wait Verifing")
+
+    }
+
+
+    fun enterUserInFirebaseViaUserIdIEPhoneno(phoneNo: String) {
+
+        val firebaseDatabaseRef = FirebaseDatabase.getInstance().getReference("Users")
+        val database = Database(this)
+
+//        val msg : HashMap<String,String> = HashMap<String,String>()
+//
+//        msg.put("username",message)
+//        msg.put("email",username)
+//        msg.put("password",username)
+//        msg.put("phoneno",username)
+//        msg.put("address",username)
+//
+//        firebaseDatabaseRef.child(userId).child(sessionId).child("userData").setValue(msg)
+
+
+        // userId = Phoneno
+
+        firebaseDatabaseRef.child(phoneNo).child("unwantedKey").setValue("786")
+
+        firebaseDatabaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+
+                val keyValuePairForUserId = dataSnapshot?.value as HashMap<String, Any>
+
+                val hashMapValuesUnderUserId = keyValuePairForUserId[phoneNo] as HashMap<String, Any>
+
+                val sessionIdValue = hashMapValuesUnderUserId["sessionId"]
+
+
+                var userLogedInForFirstTime = false
+
+                if (sessionIdValue == null) {
+
+                    userLogedInForFirstTime = true
+
+                    val seesionKey = "10000000000"
+                    val sessionIdForUserLogedIn = seesionKey
+
+
+                    var intent = Intent(this@PhoneNoLoginActivity, RegisterUserActivity::class.java)
+
+
+                    intent.putExtra("phoneNo", phoneNo)
+                    intent.putExtra("sessionId", sessionIdForUserLogedIn)
+
+
+                    startActivity(intent)
+                    firebaseDatabaseRef.child(phoneNo).child("sessionId").setValue(sessionIdForUserLogedIn)
+
+                    firebaseDatabaseRef.removeEventListener(this)
+
+                } else {
+
+                    if (!userLogedInForFirstTime) {
+
+
+                        val newSessionId = sessionIdValue.toString()
+                        var newSessionId2 = newSessionId.toLong()
+
+                        val newSessionId3 = ++newSessionId2
+
+                        val intent = Intent(this@PhoneNoLoginActivity, MainMenuActivity::class.java)
+
+                        startActivity(intent)
+                        firebaseDatabaseRef.child(phoneNo).child("sessionId").setValue(newSessionId3)
+
+
+                        database.updateUserSessionId(newSessionId3.toString())
+
+
+                        var sessionId  = database.getUserId()
+
+                        firebaseDatabaseRef.removeEventListener(this)
+
+                    }
+                }
+
+
+            }
+
+
+        })
 
 
     }

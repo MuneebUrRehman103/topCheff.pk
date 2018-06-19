@@ -17,31 +17,63 @@ class MainMenuActivity : AppCompatActivity() {
 
         cardViewForBuzurgMenu.setOnClickListener {
 
-            val selectedMenuOptionName = "BuzurgMenu"
+//            var intent = Intent(this@PhoneNoLoginActivity, RegisterUserActivity::class.java)
+//
+//
+//            intent.putExtra("phoneNo", phoneNo)
+//            intent.putExtra("sessionId", sessionIdForUserLogedIn)
+//
+//
+//            startActivity(intent)
+
+            /// catering daawat lunchbox single_pick beemar
+
+            val selectedMenuOptionName = "beemar"
+
             val intent = Intent(this,GeneralMenuForSelectedCategoryActivity::class.java)
+            intent.putExtra("selectedMenuOptionName", selectedMenuOptionName)
+
+
             startActivity(intent)
         }
 
         cardViewForCateringMenu.setOnClickListener{
 
-            val selectedMenuOptionName = "CateringMenu"
+
+            val selectedMenuOptionName = "catering"
+
             val intent = Intent(this,GeneralMenuForSelectedCategoryActivity::class.java)
+            intent.putExtra("selectedMenuOptionName", selectedMenuOptionName)
+
+
             startActivity(intent)
 
         }
 
         cardViewForDawatMenu.setOnClickListener{
 
-            val selectedMenuOptionName = "DawatMenu"
+
+
+            val selectedMenuOptionName = "daawat"
+
             val intent = Intent(this,GeneralMenuForSelectedCategoryActivity::class.java)
+            intent.putExtra("selectedMenuOptionName", selectedMenuOptionName)
+
+
             startActivity(intent)
 
         }
 
         cardViewForLunchBoxesMenu.setOnClickListener {
 
-           // val selectedMenuOptionName = "LunchBoxMenu"
+
+
+            val selectedMenuOptionName = "lunchbox"
+
             val intent = Intent(this,GeneralMenuForSelectedCategoryActivity::class.java)
+            intent.putExtra("selectedMenuOptionName", selectedMenuOptionName)
+
+
             startActivity(intent)
 
         }

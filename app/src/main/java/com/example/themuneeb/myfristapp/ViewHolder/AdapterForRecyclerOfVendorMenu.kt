@@ -3,6 +3,7 @@ package com.example.themuneeb.myfristapp.ViewHolder
 import android.content.Intent
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -34,20 +35,24 @@ class AdapterForRecyclerOfVendorMenu (val vendorDetails : com.example.themuneeb.
 
     }
 
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CustomViewHolder {
 
 
 
         val cardMenuView =  LayoutInflater.from(parent?.context).inflate(R.layout.custom_view_recycler_standard_menu,parent,false)
 
-
-        cardMenuView.setOnClickListener{
-
-            val intent = Intent(parent?.context, SelectedVendorsMenuActivity::class.java)
-
-            ContextCompat.startActivity(parent?.context, intent, null)
-
-        }
+//
+//        cardMenuView.setOnClickListener{
+//
+//            val intent = Intent(parent?.context, SelectedVendorsMenuActivity::class.java)
+//
+//
+//            ContextCompat.startActivity(parent?.context, intent, null)
+//
+//        }
 
 
 
@@ -77,6 +82,16 @@ class AdapterForRecyclerOfVendorMenu (val vendorDetails : com.example.themuneeb.
         holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContaingMenuInfo?.txtCategory?.text =""
         holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContaingMenuInfo?.txtPrice?.text = ""
 
+
+        holder?.view?.setOnClickListener{
+
+            val intent = Intent(  holder?.view?.context , SelectedVendorsMenuActivity::class.java)
+            intent.putExtra("vendorId", caterer.id)
+
+
+            ContextCompat.startActivity(holder?.view?.context , intent, null)
+
+        }
 
         // holder?.view?.cardForMenuItem?.imgInCardRight = ""
 

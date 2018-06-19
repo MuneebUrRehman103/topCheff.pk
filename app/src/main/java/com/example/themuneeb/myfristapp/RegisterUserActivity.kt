@@ -7,19 +7,30 @@ import android.widget.Toast
 import com.example.themuneeb.myfristapp.Database.Database
 import com.example.themuneeb.myfristapp.Model.Order
 import com.example.themuneeb.myfristapp.Model.User
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_phone_no_login.*
 import kotlinx.android.synthetic.main.activity_register_user.*
 
 class RegisterUserActivity : AppCompatActivity() {
 
-
-
+    var phoneNo = ""
+    var sessionId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_user)
 
+        var phoneNo1 = intent.getStringExtra("phoneNo")
+        var sessionId1 = intent.getStringExtra("sessionId")
+
+       phoneNo = phoneNo1.toString()
+       sessionId = sessionId1.toString()
 
 
+        txtPhoneNo.setText(phoneNo)
+        txtPhoneNo.isCursorVisible = false
+        txtPhoneNo.isClickable = false
+        txtPhoneNo.isFocusable = false
 
         btnRegister.setOnClickListener{
 
@@ -32,7 +43,8 @@ class RegisterUserActivity : AppCompatActivity() {
                 val address = txtAddress.text.toString()
 
 
-                registerUserToLocalDataBase(username,email,password,phoneno,address)
+                registerUserToLocalDataBase(sessionId,username,email,password,phoneno,address)
+                registerUserToFirebase(username,email,password,phoneno,address)
 
 
 
@@ -62,12 +74,33 @@ class RegisterUserActivity : AppCompatActivity() {
 
     }
 
+    fun registerUserToFirebase(username : String , email : String , password : String , phoneno : String , address : String) {
+
+        val firebaseDatabaseRefForUserData = FirebaseDatabase.getInstance().getReference("Users")
 
 
-    fun registerUserToLocalDataBase(username : String , email : String , password : String , phoneno : String , address : String) {
+        val msg : HashMap<String,String> = HashMap<String,String>()
+
+        msg.put("username",username)
+        msg.put("email",email)
+        msg.put("password",password)
+        msg.put("phoneno",phoneno)
+        msg.put("address",address)
+
+        firebaseDatabaseRefForUserData.child(phoneno).child("userData").setValue(msg)
 
 
 
+
+    }
+
+
+        fun registerUserToLocalDataBase(userId : String ,username : String , email : String , password : String , phoneno : String , address : String) {
+
+
+        var databaseInstance = Database(this)
+
+        databaseInstance.addUserRegisterDetail(userId,username,email,password,phoneno,address)
 
         Toast.makeText(
                 this,

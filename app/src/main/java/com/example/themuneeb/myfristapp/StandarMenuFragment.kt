@@ -29,15 +29,39 @@ import java.io.IOException
 class StandarMenuFragment : Fragment() {
 
 
+    //(standardMenuLink) getcaterersbytype :: type : catering daawat lunchbox single_pick beemar  all vendor id will be same ..
+        // :: http://topchef.pk/api/router.php?method=getMenusByVendorAndType&type=catering&vendor=2
 
-    var typeOfMenuToBeDisplayed = "MenuItems"
+    // (vendorMenuLink) getCaterersByType :: type : catering daawat lunchbox single_pick beemar
+        // :: http://topchef.pk/api/router.php?method=getCaterers&type=catering
+
+    // (menusOfVendorSelected) getmenusforspecificcaterers :: type : catering daawat lunchbox single_pick beemar
+        // :: http://topchef.pk/api/router.php?method=getMenusByVendor&vendor=2
+
+
+
+
+    var typeOfMenuToBeDisplayed = "MenuItems"  // typesOfMenus :: standardMenu : MenuItems , VendorMenu : VendorItems , VendorItemsSelectedMenu : vendorIdSelected
+    var categoryOfMenuToBeDisplayed = "catering"
+    var vendorIdBySelectingVendor = "2"
 
     //typeOfMenuToBeDisplayed ::  VendorItems || MenuItems
 
 
     val vendorIdToGetItsMenu = "2"
-    val urlToGetVendorItems = "http://topchef.pk/api/router.php?method=getCaterers&type=catering"
-    val urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendor&vendor="+vendorIdToGetItsMenu
+
+     //  val urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendor&vendor="+vendorIdToGetItsMenu
+
+
+    var vendorIdForStandardMenu = "2"
+    var categoryOfStandardMenu = "catering"
+
+
+
+    val urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendorAndType&type="+categoryOfStandardMenu+"&vendor="+vendorIdForStandardMenu
+    val urlToGetVendorItems = "http://topchef.pk/api/router.php?method=getCaterers&type="+categoryOfStandardMenu
+    val urlToGetMenuForVendorSelected = "http://topchef.pk/api/router.php?method=getMenusByVendor&vendor="+vendorIdBySelectingVendor
+
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -52,27 +76,53 @@ class StandarMenuFragment : Fragment() {
 
         if (args != null){
             typeOfMenuToBeDisplayed = args.getString("typeOfMenu")
+            categoryOfMenuToBeDisplayed = args.getString("categoryOfMenuSelected")
+
+            vendorIdBySelectingVendor = args.getString("vendorIdBySelectingVendor")
+
+            if (vendorIdBySelectingVendor == null){
+
+                vendorIdBySelectingVendor = "2"
+            }
+
+
         }
         else{
 
             typeOfMenuToBeDisplayed = "MenuItems"
+            categoryOfMenuToBeDisplayed = "catering"
         }
 
 
         // get api data for standar menu details from :: http://topchef.pk/api/router.php?method=getMenusByVendor&vendor=2
 
 
+        // standardMenu : MenuItems
+
+        if ( typeOfMenuToBeDisplayed=="MenuItems" ){
+
+            categoryOfStandardMenu = categoryOfMenuToBeDisplayed
+
+            createMenuItemsFragment()
+        }
+
+
+        // vendorMenu : VendorItems
+
         if ( typeOfMenuToBeDisplayed=="VendorItems" ){
 
-
+            categoryOfStandardMenu = categoryOfMenuToBeDisplayed
 
             createVendorItemsFragment()
         }
 
-        if ( typeOfMenuToBeDisplayed=="MenuItems" ){
 
+        // VendorItemsSelectedMenu || selectedVendorIdWillBePassed
 
-            createMenuItemsFragment()
+        if ( typeOfMenuToBeDisplayed=="VendorItemsSelectedMenu" ){
+
+            val vendorId = vendorIdBySelectingVendor
+            createMenuItemsFragmentOfSelectedVendor()
         }
 
 
@@ -82,63 +132,6 @@ class StandarMenuFragment : Fragment() {
 
         return view
     }
-
-
-
-
-    fun createVendorItemsFragment(){
-
-
-
-        ///////////////////////////////////////
-
-
-        var menuItems : MenuItem? = null
-
-
-        val request = Request.Builder()
-                .url(urlToGetVendorItems)
-                .build()
-
-        var client = OkHttpClient()
-
-
-
-        client.newCall(request).enqueue(object : Callback {
-
-            override fun onResponse(call: Call?, response: Response?) {
-
-                val body = response?.body()?.string()
-                println(body)
-
-                val gson = GsonBuilder().create()
-
-                var  vendorDetails = gson.fromJson(body,VendorDetail::class.java)
-
-                this.run {
-
-                    activity.runOnUiThread {  recViewStandardMenu.adapter = com.example.themuneeb.myfristapp.ViewHolder.AdapterForRecyclerOfVendorMenu(vendorDetails)  }
-
-
-                }
-
-
-                println(menuItems)
-
-
-            }
-
-            override fun onFailure(call: Call?, e: IOException?) {
-            }
-
-
-        })
-
-    }
-
-
-
-
 
 
 
@@ -192,6 +185,116 @@ class StandarMenuFragment : Fragment() {
 
 
     }
+
+
+    fun createVendorItemsFragment(){
+
+
+
+        ///////////////////////////////////////
+
+
+        var menuItems : MenuItem? = null
+
+
+        val request = Request.Builder()
+                .url(urlToGetVendorItems)
+                .build()
+
+        var client = OkHttpClient()
+
+
+
+        client.newCall(request).enqueue(object : Callback {
+
+            override fun onResponse(call: Call?, response: Response?) {
+
+                val body = response?.body()?.string()
+                println(body)
+
+                val gson = GsonBuilder().create()
+
+                var  vendorDetails = gson.fromJson(body,VendorDetail::class.java)
+
+                this.run {
+
+                    activity.runOnUiThread {
+                        recViewStandardMenu.adapter = com.example.themuneeb.myfristapp.ViewHolder.AdapterForRecyclerOfVendorMenu(vendorDetails)
+                    }
+
+
+                }
+
+
+                println(menuItems)
+
+
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+            }
+
+
+        })
+
+    }
+
+
+
+
+
+    fun createMenuItemsFragmentOfSelectedVendor(){
+
+
+
+        ///////////////////////////////////////
+
+
+        var menuItems : MenuItem? = null
+
+        val request = Request.Builder()
+                .url(urlToGetMenuForVendorSelected)
+                .build()
+
+        var client = OkHttpClient()
+
+
+
+        client.newCall(request).enqueue(object : Callback {
+
+            override fun onResponse(call: Call?, response: Response?) {
+
+                val body = response?.body()?.string()
+                println(body)
+
+                val gson = GsonBuilder().create()
+
+                var  menuItems = gson.fromJson(body,MenuItem::class.java)
+
+                this.run {
+
+                    activity.runOnUiThread {  recViewStandardMenu.adapter = AdapterOfRecyclyerViewStandarMenu(menuItems)  }
+
+
+                }
+
+
+                println(menuItems)
+
+
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+            }
+
+
+        })
+
+
+    }
+
+
+
 
 }
 
