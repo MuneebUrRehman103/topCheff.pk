@@ -30,18 +30,39 @@ class MenuDetailsActivity(menuId: String = "1") : AppCompatActivity() {
 
     var itemHasNotBeenAdded = true
 
-
     var menuIdToFetchItsItems = menuId
-    var totalPriceForMenu = 1500
-
+    var totalPriceForMenu = "123455"
     var menuItemsFetchedFromApi: MenuItemDetail? = null
-
-    var menuTitleFetched = "Biryani Deal no 1"
-
+    var menuTitleFetched = "Unknown Title"
+    var menuCategory = "Unknown Category"
+    var menuForNumberOfPeople = "Unknown People"
+    var menuItemQuantity = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_details)
+
+
+        if(intent.getStringExtra("menuId") != null ){
+            menuIdToFetchItsItems = intent.getStringExtra("menuId")
+        }
+        if(intent.getStringExtra("menuTitle") != null ){
+            menuTitleFetched = intent.getStringExtra("menuTitle")
+        }
+        if(intent.getStringExtra("menuTitleNoOfPeople") != null ){
+            menuForNumberOfPeople = intent.getStringExtra("menuTitleNoOfPeople")
+        }
+        if(intent.getStringExtra("menuCategory") != null ){
+            menuCategory = intent.getStringExtra("menuCategory")
+        }
+        if(intent.getStringExtra("menuPrice") != null ){
+            totalPriceForMenu = intent.getStringExtra("menuPrice")
+        }
+
+
+
+
+
 
         ///////////////////////////////////
 
@@ -65,13 +86,26 @@ class MenuDetailsActivity(menuId: String = "1") : AppCompatActivity() {
 
     fun addingListenerForElegantNumberButton() {
 
-        btnElegantNumber.setOnClickListener(View.OnClickListener {
 
-            val num = btnElegantNumber.number
+        btnElegantNumber.setOnValueChangeListener { myView, oldValue, newValue ->
 
-            Toast.makeText(this, "Already Added To Cart: " + num, Toast.LENGTH_SHORT).show()
+         //   val num = btnElegantNumber.number
 
-        })
+            menuItemQuantity = newValue
+
+            txtPriceForMenuItemForMenuDetails.text = (totalPriceForMenu.toInt() * newValue.toInt()).toString() + " Rs"
+
+          //  Toast.makeText(this, "Already Added To Cart: " + newValue, Toast.LENGTH_SHORT).show()
+
+        }
+
+//        btnElegantNumber.setOnClickListener(View.OnClickListener {
+//
+//            val num = btnElegantNumber.number
+//
+//            Toast.makeText(this, "Already Added To Cart: " + num, Toast.LENGTH_SHORT).show()
+//
+//        })
 
     }
 
@@ -88,13 +122,12 @@ class MenuDetailsActivity(menuId: String = "1") : AppCompatActivity() {
 
                 val database = Database(this)
 
-                // dummy order :: when api will be set then menu view's data stored in this class will be used
 
 
-                val productId = "12345"
-                val productName = "PizzaHutDeal-No-" + menuIdToFetchItsItems
-                val quantity = "1"
-                val price = "1000"
+                val productId = menuIdToFetchItsItems
+                val productName = menuTitleFetched
+                val quantity = menuItemQuantity.toString()
+                val price = txtPriceForMenuItemForMenuDetails.text.toString()
                 val discount = "0"
 
                 val order = Order(productId, productName, quantity, price, discount)
@@ -159,8 +192,9 @@ class MenuDetailsActivity(menuId: String = "1") : AppCompatActivity() {
 
                     recViewForMenuDetail.adapter = AdapterForMenuDetailsActivity(menuItemDetails)
 
-
-                    txtPriceForMenuItemForMenuDetails.text = totalPriceForMenu.toString()
+                    txtMenuPersonDetail.text = menuForNumberOfPeople + " PERSONS"
+                    txtMenuType.text = "type : " + menuCategory
+                    txtPriceForMenuItemForMenuDetails.text = totalPriceForMenu + " Rs"
 
                 }
 

@@ -58,9 +58,9 @@ class StandarMenuFragment : Fragment() {
 
 
 
-    val urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendorAndType&type="+categoryOfStandardMenu+"&vendor="+vendorIdForStandardMenu
-    val urlToGetVendorItems = "http://topchef.pk/api/router.php?method=getCaterers&type="+categoryOfStandardMenu
-    val urlToGetMenuForVendorSelected = "http://topchef.pk/api/router.php?method=getMenusByVendor&vendor="+vendorIdBySelectingVendor
+    var urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendorAndType&type="+categoryOfStandardMenu+"&vendor="+vendorIdForStandardMenu
+    var urlToGetVendorItems = "http://topchef.pk/api/router.php?method=getCaterers&type="+categoryOfStandardMenu
+    var urlToGetMenuForVendorSelected = "http://topchef.pk/api/router.php?method=getMenusByVendor&vendor="+vendorIdBySelectingVendor
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -76,14 +76,21 @@ class StandarMenuFragment : Fragment() {
 
         if (args != null){
             typeOfMenuToBeDisplayed = args.getString("typeOfMenu")
-            categoryOfMenuToBeDisplayed = args.getString("categoryOfMenuSelected")
 
-            vendorIdBySelectingVendor = args.getString("vendorIdBySelectingVendor")
-
-            if (vendorIdBySelectingVendor == null){
-
-                vendorIdBySelectingVendor = "2"
+            if ( args.getString("categoryOfMenuSelected") != null){
+                categoryOfMenuToBeDisplayed = args.getString("categoryOfMenuSelected")
             }
+
+
+
+            if (args.getString("vendorIdBySelectingVendor") != null){
+
+
+                vendorIdBySelectingVendor = args.getString("vendorIdBySelectingVendor")
+
+            }
+
+
 
 
         }
@@ -103,6 +110,12 @@ class StandarMenuFragment : Fragment() {
 
             categoryOfStandardMenu = categoryOfMenuToBeDisplayed
 
+
+            if(categoryOfStandardMenu!=null){
+
+                urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendorAndType&type="+categoryOfStandardMenu+"&vendor="+vendorIdForStandardMenu
+            }
+
             createMenuItemsFragment()
         }
 
@@ -113,6 +126,12 @@ class StandarMenuFragment : Fragment() {
 
             categoryOfStandardMenu = categoryOfMenuToBeDisplayed
 
+            if(categoryOfStandardMenu != null){
+
+                urlToGetVendorItems = "http://topchef.pk/api/router.php?method=getCaterers&type="+categoryOfStandardMenu
+
+            }
+
             createVendorItemsFragment()
         }
 
@@ -122,6 +141,10 @@ class StandarMenuFragment : Fragment() {
         if ( typeOfMenuToBeDisplayed=="VendorItemsSelectedMenu" ){
 
             val vendorId = vendorIdBySelectingVendor
+
+            if(vendorId != null) {
+                urlToGetMenuForVendorSelected = "http://topchef.pk/api/router.php?method=getMenusByVendor&vendor=" + vendorId
+            }
             createMenuItemsFragmentOfSelectedVendor()
         }
 

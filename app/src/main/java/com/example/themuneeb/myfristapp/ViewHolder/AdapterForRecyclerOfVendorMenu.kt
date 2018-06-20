@@ -83,7 +83,7 @@ class AdapterForRecyclerOfVendorMenu (val vendorDetails : com.example.themuneeb.
         holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContaingMenuInfo?.txtPrice?.text = ""
 
 
-        holder?.view?.setOnClickListener{
+        holder?.view?.cardForMenuItem?.setOnClickListener{
 
             val intent = Intent(  holder?.view?.context , SelectedVendorsMenuActivity::class.java)
             intent.putExtra("vendorId", caterer.id)

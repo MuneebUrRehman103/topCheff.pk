@@ -133,18 +133,19 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtMenuItemForMenuDetail"
+                            android:id="@+id/txtMenuPersonDetail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="14dp"
                             android:padding="4dp"
                             android:text="Menu Item no 1"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="20sp"
+                            android:textSize="14sp"
                             android:textStyle="bold"
-
+                            android:layout_gravity="left"
 
                             />
+
 
 
                         <LinearLayout
@@ -155,12 +156,12 @@
 
                             >
 
-                            <ImageView
-                                android:id="@+id/imgDollarSign"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:src="@drawable/ic_attach_money_black_24dp" />
+                            <!--<ImageView-->
+                                <!--android:id="@+id/imgDollarSign"-->
+                                <!--android:layout_width="0dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_weight="1"-->
+                                <!--android:src="@drawable/ic_attach_money_black_24dp" />-->
 
 
                             <TextView
@@ -168,14 +169,28 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="0dp"
-                                android:layout_weight="9"
-                                android:text="1,000"
-                                android:textColor="@color/colorPrimary"
+                                android:layout_weight="6"
+                                android:padding="4dp"
+                                android:text="1,000 Rs"
+                                android:textColor="@color/btn_primary_color"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
 
                                 />
-
+                            <TextView
+                                android:id="@+id/txtMenuType"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_weight="4"
+                                android:padding="4dp"
+                                android:text="Menu Item no 1"
+                                android:textColor="@color/btn_primary_color"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:layout_gravity="right"
+                                android:textAlignment="viewEnd"
+                                />
 
                         </LinearLayout>
 
@@ -187,11 +202,11 @@
                             android:layout_marginBottom="18dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginTop="8dp"
+                            app:backGroundColor="@color/btn_primary_color"
                             app:finalNumber="20"
                             app:initialNumber="1"
-                            app:textSize="8dp"
 
-                            >
+                            app:textSize="8dp">
 
                         </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 

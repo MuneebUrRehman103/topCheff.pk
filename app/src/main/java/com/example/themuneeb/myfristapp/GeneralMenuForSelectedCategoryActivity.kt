@@ -49,7 +49,7 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
 
         val argsForVendorMenu = Bundle()
         argsForVendorMenu.putString("typeOfMenu","VendorItems")
-        argsForStandardMenu.putString("categoryOfMenuSelected",selectedMenuOptionName.toString())
+        argsForVendorMenu.putString("categoryOfMenuSelected",selectedMenuOptionName.toString())
 
         vendorMenuFragment.setArguments(argsForVendorMenu)
 

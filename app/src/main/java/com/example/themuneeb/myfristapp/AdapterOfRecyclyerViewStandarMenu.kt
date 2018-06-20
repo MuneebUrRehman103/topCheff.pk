@@ -43,13 +43,13 @@ class AdapterOfRecyclyerViewStandarMenu(val menuItems : com.example.themuneeb.my
         val cardMenuView =  LayoutInflater.from(parent?.context).inflate(R.layout.custom_view_recycler_standard_menu,parent,false)
 
 
-        cardMenuView.setOnClickListener{
-
-            val intent = Intent(parent?.context,MenuDetailsActivity(  menuItems.vendor_id.toString() )::class.java)
-
-            startActivity(parent?.context,intent,null)
-
-        }
+//        cardMenuView.setOnClickListener{
+//
+//            val intent = Intent(parent?.context,MenuDetailsActivity(  menuItems.vendor_id.toString() )::class.java)
+//
+//            startActivity(parent?.context,intent,null)
+//
+//        }
 
 
 
@@ -77,6 +77,27 @@ class AdapterOfRecyclyerViewStandarMenu(val menuItems : com.example.themuneeb.my
         holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContaingMenuInfo?.txtPerPerson?.text = menuDetailForPerPersons + " persons"
         holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContaingMenuInfo?.txtCategory?.text = "type : "+ menuDetailForCategory
         holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContaingMenuInfo?.txtPrice?.text = menuDetailForPerPrice + " RS"
+
+
+        holder?.view?.cardForMenuItem?.setOnClickListener{
+
+            val intent = Intent(holder?.view?.context,MenuDetailsActivity(  menuItems.vendor_id.toString() )::class.java)
+
+            intent.putExtra("menuId",menu.menu_id.toString())
+
+            intent.putExtra("menuTitle",menu.title.toString())
+
+            intent.putExtra("menuTitleNoOfPeople",menu.range.toString())
+
+            intent.putExtra("menuCategory",menu.category.toString())
+
+
+            intent.putExtra("menuPrice",menu.price.toString())
+
+
+            startActivity(holder?.view?.context,intent,null)
+
+        }
 
 
         // holder?.view?.cardForMenuItem?.imgInCardRight = ""
