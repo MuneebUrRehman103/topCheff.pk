@@ -22,22 +22,18 @@
         </activity>
         <activity android:name=".CateringActivity" />
         <activity android:name=".SideBarActivity" />
-        <activity android:name=".MenuDetailsActivity" >
-
-        </activity>
+        <activity android:name=".MenuDetailsActivity" />
         <activity android:name=".CartMenuActivity" />
         <activity
             android:name=".GeneralMenuForSelectedCategoryActivity"
             android:label="@string/title_activity_general_menu_for_selected_category_activity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MainMenuActivity"></activity>
+        <activity android:name=".MainMenuActivity" />
         <activity android:name=".SelectedVendorsMenuActivity" />
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".ChatActivity">
-
-
-
-        </activity>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".PendingOrdersActivity" />
+        <activity android:name=".PendingOrdersDetailActivity"></activity>
     </application>
 
 </manifest>

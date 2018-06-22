@@ -41,9 +41,7 @@ class AdapterForMenuDetailsActivity(val menuItemDetail : com.example.themuneeb.m
 
         cardMenuView.setOnClickListener{
 
-            val intent = Intent(parent?.context, MenuDetailsActivity::class.java)
 
-            ContextCompat.startActivity(parent?.context, intent, null)
 
         }
 

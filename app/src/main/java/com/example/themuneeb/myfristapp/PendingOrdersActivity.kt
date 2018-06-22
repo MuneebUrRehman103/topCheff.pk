@@ -1,5 +1,151 @@
-package com.example.themuneeb.myfristapp
-
-/**
- * Created by TheMuneeb on 5/25/2018.
- */
+//package com.example.themuneeb.myfristapp
+//
+//import android.content.Intent
+//import android.support.v7.app.AppCompatActivity
+//import android.os.Bundle
+//import android.support.v7.widget.LinearLayoutManager
+//import com.example.themuneeb.myfristapp.Database.Database
+//import com.example.themuneeb.myfristapp.ViewHolder.AdapterForRecyclerViewOfPendingOrders
+//import com.google.firebase.database.DataSnapshot
+//import com.google.firebase.database.DatabaseError
+//import com.google.firebase.database.FirebaseDatabase
+//import com.google.firebase.database.ValueEventListener
+//import kotlinx.android.synthetic.main.activity_pending_orders.*
+//
+//class PendingOrdersActivity : AppCompatActivity() {
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_pending_orders)
+//
+//
+//
+//        fetchAllThePendingOrdersFromFirebase()
+//
+//        addAdapterForRecyclerView()
+//
+//
+//    }
+//
+//    fun getUserIdFromDatabase() : String {
+//
+//
+//        val database = Database(this)
+//
+//
+//        var userIdFromDatabase = database.getUserId()
+//
+//
+//        return userIdFromDatabase
+//
+//    }
+//
+//
+//    fun fetchAllThePendingOrdersFromFirebase(){
+//
+//
+//        var userIdFromDatabase = getUserIdFromDatabase()
+//
+//
+//        val firebaseInst = FirebaseDatabase.getInstance().getReference("orders")
+//
+//
+//        firebaseInst.child(userIdFromDatabase).child("unwantedKey").setValue("786")
+//
+//
+//
+//        firebaseInst.addValueEventListener(object : ValueEventListener {
+//
+//            override fun onCancelled(p0: DatabaseError?) {
+//            }
+//
+//            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+//
+//
+//                val valueReceivedFromFirebase = dataSnapshot?.value as HashMap<String, Any>
+//
+//                val orderResponseReceivedFromFirebase = valueReceivedFromFirebase[userIdFromDatabase] as HashMap<String, Any>
+//
+//                val maxOrderNoOfUsersInFirebase = orderResponseReceivedFromFirebase["latest_order_no"].toString()
+//
+//
+//
+//               for (orderNumberOfUser in maxOrderNoOfUsersInFirebase){
+//
+//                   val orderDetailsForOrderNumber = orderResponseReceivedFromFirebase[orderNumberOfUser.toString()] as HashMap< String,Any>
+//
+//                   if (orderDetailsForOrderNumber != null){
+//
+//
+//
+//
+//
+//                   }
+//
+//
+//
+//               }
+//
+//
+//
+//
+//
+//                if (sessionIdOfUserFromDatabase == sessionIdValueFromFirebase.toString()) {
+//
+//
+//                    sessionMatches = true
+//
+//
+//                    val intent = Intent(this@PhoneNoLoginActivity, MainMenuActivity::class.java)
+//
+//                    startActivity(intent)
+//
+//
+//
+//                    firebaseInst.removeEventListener(this)
+//
+//
+//                }else{
+//
+//                    btnLogin.setOnClickListener {
+//
+//                        val phoneNumber = txtLoginTextBoxTitle.text.toString()
+//
+//                        verifyUsersPhoneNumber(phoneNumber)
+//
+//
+//                        enterUserInFirebaseViaUserIdIEPhoneno("03122685832")
+//
+//                    }
+//
+//                    firebaseInst.removeEventListener(this)
+//                }
+//
+//
+//            }
+//
+//
+//        })
+//
+//
+//
+//
+//
+//
+//
+//    }
+//
+//
+//    fun addAdapterForRecyclerView() {
+//
+//
+//        recViewForPendingOrders.layoutManager = LinearLayoutManager(this)
+//        recViewForPendingOrders.adapter = AdapterForRecyclerViewOfPendingOrders()
+//
+//
+//
+//    }
+//
+//
+//
+//}

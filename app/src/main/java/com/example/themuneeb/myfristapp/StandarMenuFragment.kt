@@ -53,7 +53,7 @@ class StandarMenuFragment : Fragment() {
      //  val urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendor&vendor="+vendorIdToGetItsMenu
 
 
-    var vendorIdForStandardMenu = "2"
+    var vendorIdForStandardMenu = "1"
     var categoryOfStandardMenu = "catering"
 
 
