@@ -58,7 +58,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/txtSeeOrderDetail"
+                    android:id="@+id/txtQuantity"
                     android:textColor="@color/cart_background_color1"
                     android:text="Quantity : 14"
                     android:textSize="10sp"

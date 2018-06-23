@@ -14,11 +14,6 @@
         <activity android:name=".StandardMenuActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PhoneNoLoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".CateringActivity" />
         <activity android:name=".SideBarActivity" />
@@ -32,7 +27,15 @@
         <activity android:name=".SelectedVendorsMenuActivity" />
         <activity android:name=".RegisterUserActivity" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".PendingOrdersActivity" />
+
+        <activity android:name=".PendingOrdersActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".PendingOrdersDetailActivity"></activity>
     </application>
 

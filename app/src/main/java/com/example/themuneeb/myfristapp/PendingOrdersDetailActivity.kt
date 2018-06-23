@@ -1,31 +1,119 @@
-//package com.example.themuneeb.myfristapp
-//
-//import android.support.v7.app.AppCompatActivity
-//import android.os.Bundle
-//import android.support.v7.widget.LinearLayoutManager
-//import com.example.themuneeb.myfristapp.ViewHolder.AdapterForRecyclerViewOfPendingOrdeDetails
-//import kotlinx.android.synthetic.main.activity_pending_orders_detail.*
-//
-//class PendingOrdersDetailActivity : AppCompatActivity() {
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_pending_orders_detail)
-//
-//
-//
-//        addAdapterForRecView()
-//
-//    }
-//
-//
-//    fun addAdapterForRecView(){
-//
-//
-//        recViewForPendingOrdersDetail.layoutManager = LinearLayoutManager(this)
-//        recViewForPendingOrdersDetail.adapter = AdapterForRecyclerViewOfPendingOrdeDetails()
-//
-//    }
-//
-//
-//}
+package com.example.themuneeb.myfristapp
+
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import com.example.themuneeb.myfristapp.Database.Database
+import com.example.themuneeb.myfristapp.ViewHolder.AdapterForRecyclerViewOfPendingOrdeDetails
+import com.example.themuneeb.myfristapp.ViewHolder.AdapterForRecyclerViewOfPendingOrders
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_pending_orders.*
+import kotlinx.android.synthetic.main.activity_pending_orders_detail.*
+
+class PendingOrdersDetailActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_pending_orders_detail)
+
+
+
+        addAdapterForRecyclerView()
+
+    }
+
+
+    fun getUserIdFromDatabase() : String {
+
+
+        val database = Database(this)
+
+
+        var userIdFromDatabase = database.getUserId()
+
+
+        return userIdFromDatabase
+
+    }
+
+
+    fun addAdapterForRecyclerView() {
+
+//        val listOfPendingOrderNo = fetchAllThePendingOrdersFromFirebase()
+
+
+
+
+        val allOrderNo = mutableListOf<Int>()
+
+        var userIdFromDatabase = getUserIdFromDatabase()
+
+        var orderDetailsForOrderNumber : HashMap<Any, Any>?
+
+        var allOrderDetailsInMap = mutableListOf<HashMap<Any, Any>?>()
+
+        val firebaseInst = FirebaseDatabase.getInstance().getReference("orders")
+
+
+        firebaseInst.child(userIdFromDatabase).child("unwantedKey").setValue("786")
+
+        firebaseInst.addValueEventListener(object : ValueEventListener {
+
+            override fun onCancelled(p0: DatabaseError?) {
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+
+
+                val valueReceivedFromFirebase = dataSnapshot?.value as HashMap<String, Any>
+
+                val orderResponseReceivedFromFirebase = valueReceivedFromFirebase[userIdFromDatabase] as HashMap<String, Any>
+
+                val maxOrderNoOfUsersInFirebase = orderResponseReceivedFromFirebase["latest_order_no"].toString()
+
+
+
+                for (orderNumberOfUser in 0..maxOrderNoOfUsersInFirebase.toInt()) {
+
+                    if (orderNumberOfUser<=maxOrderNoOfUsersInFirebase.toInt()){
+
+                        orderDetailsForOrderNumber = orderResponseReceivedFromFirebase[orderNumberOfUser.toString()]  as HashMap<Any, Any>?
+
+                        if (orderDetailsForOrderNumber != null) {
+
+
+                            allOrderNo.add(orderNumberOfUser.toInt())
+
+                            allOrderDetailsInMap.add(orderDetailsForOrderNumber)
+
+
+                        }
+                    }
+
+
+                }
+
+                recViewForPendingOrdersDetail.layoutManager = LinearLayoutManager(this@PendingOrdersDetailActivity)
+                recViewForPendingOrdersDetail.adapter = AdapterForRecyclerViewOfPendingOrdeDetails(allOrderDetailsInMap.get(0))
+
+                firebaseInst.removeEventListener(this)
+
+
+
+            }
+
+
+
+        })
+
+
+    }
+
+
+
+
+
+}

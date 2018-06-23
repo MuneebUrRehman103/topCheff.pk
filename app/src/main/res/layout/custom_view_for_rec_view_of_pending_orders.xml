@@ -4,6 +4,7 @@
 
 <android.support.v7.widget.CardView
 
+    android:id="@+id/cardView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
@@ -15,6 +16,8 @@
     app:cardElevation="4dp"
     android:layout_margin="8dp"
 
+
+
     >
 
 
@@ -23,7 +26,10 @@
         android:layout_margin="8dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        android:padding="6dp"
+        >
 
         <LinearLayout
             android:id="@+id/LinearLayout2"
@@ -47,7 +53,7 @@
                 android:id="@+id/txtItemName"
                 android:textColor="@color/cart_background_color2"
                 android:text="Order No : 1"
-                android:textSize="14sp"
+                android:textSize="17sp"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:layout_gravity="right|center_vertical"
@@ -60,9 +66,9 @@
                     android:id="@+id/txtSeeOrderDetail"
                     android:textColor="@color/white"
                     android:text="click to see order details"
-                    android:textSize="8sp"
+                    android:textSize="10sp"
                     android:textAllCaps="false"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:layout_gravity="right|center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

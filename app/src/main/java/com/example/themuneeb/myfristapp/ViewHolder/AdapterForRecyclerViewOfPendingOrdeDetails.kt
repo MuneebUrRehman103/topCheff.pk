@@ -9,54 +9,48 @@
 //import com.example.themuneeb.myfristapp.CustomViewHolder
 //import com.example.themuneeb.myfristapp.MenuDetailsActivity
 //import com.example.themuneeb.myfristapp.R
-//import kotlinx.android.synthetic.main.custom_view_of_rec_view_for_menu_detail.view.*
+//import kotlinx.android.synthetic.main.custom_view_for_rec_view_of_pending_order_details.*
+//import kotlinx.android.synthetic.main.custom_view_for_rec_view_of_pending_order_details.view.*
+//
 //
 ///**
 // * Created by imac on 22/06/2018.
 // */
 //
 //
-//class AdapterForRecyclerViewOfPendingOrdeDetails()  : RecyclerView.Adapter<CustomViewHolder>(){
 //
 //
-//    val values = listOf("Biryani","Haleem","Nihari","Kofte","Kabab","Tikka")
+//class AdapterForRecyclerViewOfPendingOrdeDetails(val allOrderDetailsInMap : HashMap<String, Any>)  : RecyclerView.Adapter<CustomViewHolder>(){
 //
-////    val imagValues = listOf(R.drawable.abc_btn_radio_material,
-////                    R.drawable.abc_cab_background_internal_bg,
-////                    R.drawable.abc_ab_share_pack_mtrl_alpha,
-////                    R.drawable.abc_ic_ab_back_material,
-////                    R.drawable.abc_ic_star_black_16dp,
-////                    R.drawable.common_google_signin_btn_icon_light);
+//
 //
 //    override fun getItemCount(): Int {
 //
 //
-//
-//
-//
-//
-//        return  menuItemDetail.items.count()
+//        return  allOrderDetailsInMap.count() - 1
 //    }
 //
 //    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CustomViewHolder {
 //
 //
 //
-//        val cardMenuView =  LayoutInflater.from(parent?.context).inflate(R.layout.custom_view_of_rec_view_for_menu_detail,parent,false)
+//        val cardViewForPendingOrderDetails =  LayoutInflater.from(parent?.context).inflate(R.layout.custom_view_for_rec_view_of_pending_order_details,parent,false)
 //
 //
-//        cardMenuView.setOnClickListener{
 //
-//            val intent = Intent(parent?.context, MenuDetailsActivity::class.java)
 //
-//            ContextCompat.startActivity(parent?.context, intent, null)
+//        cardViewForPendingOrderDetails.setOnClickListener {
+//            //
+////            val intent = Intent(parent?.context, MenuDetailsActivity::class.java)
+////
+////            ContextCompat.startActivity(parent?.context, intent, null)
 //
 //        }
 //
 //
 //
 //
-//        return CustomViewHolder(cardMenuView)
+//        return CustomViewHolder(cardViewForPendingOrderDetails)
 //
 //
 //    }
@@ -64,23 +58,61 @@
 //    override fun onBindViewHolder(holder: CustomViewHolder?, position: Int) {
 //
 //
-//        val item = menuItemDetail.items.get(position)
 //
-//        val menuItemName: String = item.item_name
-//        val menuDescription: String = item.description
+//        var iterator = 0
 //
-//        holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContainingMenuDetailsTitleAndDescription?.txtItemName?.text = menuItemName
-//        holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContainingMenuDetailsTitleAndDescription?.txtItemDescription?.text = menuDescription
-//        // holder?.view?.cardForMenuItem?.imgInCardRight = ""
+//        var delivered = "Unknown"
+//
+//        var quantity = "Unknown"
+//
+//        var itemName = "Unknown"
+//
+//        var orderDetails = HashMap<String,Any>()
 //
 //
-//        //styling
+////        val orderDetailasHashMap = allOrderDetailsInMap.get(position)
 //
-//        //orange
-//        holder?.view?.cardForMenuItem?.setCardBackgroundColor(Color.rgb(250,158,20))
+//        for (key in allOrderDetailsInMap.keys) {
 //
-//        //green
-//        holder?.view?.cardForMenuItem?.linearLayoutForMenuDetail?.linearLayoutContainingMenuDetailsTitleAndDescription?.txtItemName?.setTextColor(Color.rgb(34,153,36))
+//           if(iterator == position)
+//
+//
+///////////////////////////////
+//
+//
+//
+//                var receivedKey = key as String
+//
+//                if (receivedKey == "delivered") {
+//
+//
+//                    delivered = allOrderDetailsInMap[key] as String
+//
+//
+//                } else {
+//
+//                    orderDetails = allOrderDetailsInMap[key] as HashMap<String, Any>
+//
+//
+//                }
+//
+//
+//
+///////////////////////////////
+//
+//            iterator = iterator + 1
+//
+//        }
+//
+//
+//        quantity = orderDetails["quantity"] as String
+//
+//        itemName = orderDetails["itemName"] as String
+//
+//
+//        holder?.view?.LinearLayout1?.LinearLayout2?.LinearLayout3?.txtItemName?.text = itemName
+//
+//        holder?.view?.LinearLayout1?.LinearLayout2?.LinearLayout3?.txtQuantity?.text = "Quantity : " + quantity
 //
 //
 //    }
