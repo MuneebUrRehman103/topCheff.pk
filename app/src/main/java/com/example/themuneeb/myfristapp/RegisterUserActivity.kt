@@ -20,11 +20,40 @@ class RegisterUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_user)
 
-        var phoneNo1 = intent.getStringExtra("phoneNo")
-        var sessionId1 = intent.getStringExtra("sessionId")
+        val isClickedFromSideBar = intent.getStringExtra("isClickedFromSideBar")
 
-       phoneNo = phoneNo1.toString()
-       sessionId = sessionId1.toString()
+
+        if (isClickedFromSideBar!=null && isClickedFromSideBar=="true"){
+
+            setupProfileViewFromRegisterView()
+
+        }
+
+
+
+        if (isClickedFromSideBar!=null && isClickedFromSideBar=="true"){
+
+            val database = Database(this)
+
+            val userdetails = database.getUserRegisterDetail()
+
+            val userDetail = userdetails[0]
+
+            phoneNo = userDetail.phoneno
+            sessionId = database.getUserSessionId()
+
+
+        }else{
+
+            var phoneNo1 = intent.getStringExtra("phoneNo")
+            var sessionId1 = intent.getStringExtra("sessionId")
+
+            phoneNo = phoneNo1.toString()
+            sessionId = sessionId1.toString()
+
+        }
+
+
 
 
         txtPhoneNo.setText(phoneNo)
@@ -34,20 +63,24 @@ class RegisterUserActivity : AppCompatActivity() {
 
         btnRegister.setOnClickListener{
 
-            if ( txtUsername.text.toString() != "" && txtEmailAddress.text.toString() != "" && txtPassword.text.toString() != "" && txtAddress.text.toString() != "" && txtPhoneNo.text.toString() != "" ){
-
-                val username = txtUsername.text.toString()
-                val email = txtEmailAddress.text.toString()
-                val password = txtPassword.text.toString()
-                val phoneno = txtPhoneNo.text.toString()
-                val address = txtAddress.text.toString()
-
-
-                registerUserToLocalDataBase(sessionId,username,email,password,phoneno,address)
-                registerUserToFirebase(username,email,password,phoneno,address)
 
 
 
+
+
+            if ( txtUsername.text.toString() != "" && txtEmailAddress.text.toString() != "" && txtPassword.text.toString() != "" && txtAddress.text.toString() != "" && txtPhoneNo.text.toString() != "" ) {
+
+
+
+                        val username = txtUsername.text.toString()
+                        val email = txtEmailAddress.text.toString()
+                        val password = txtPassword.text.toString()
+                        val phoneno = txtPhoneNo.text.toString()
+                        val address = txtAddress.text.toString()
+
+
+                        registerUserToLocalDataBase(sessionId, username, email, password, phoneno, address)
+                        registerUserToFirebase(username, email, password, phoneno, address)
 
 
 
@@ -70,6 +103,26 @@ class RegisterUserActivity : AppCompatActivity() {
 
 
         }
+
+
+    }
+
+    fun setupProfileViewFromRegisterView() {
+
+
+        btnRegister.text = "Save Changes"
+
+        val database = Database(this)
+
+        val userdetails = database.getUserRegisterDetail()
+
+        val userDetail = userdetails[0]
+
+        txtUsername.setText(userDetail.username)
+        txtEmailAddress.setText(userDetail.email)
+        txtPassword.setText(userDetail.password)
+        txtPhoneNo.setText(userDetail.phoneno)
+        txtAddress.setText(userDetail.address)
 
 
     }
@@ -99,6 +152,8 @@ class RegisterUserActivity : AppCompatActivity() {
 
 
         var databaseInstance = Database(this)
+
+        databaseInstance.deleteUserRegisterDetail()
 
         databaseInstance.addUserRegisterDetail(userId,username,email,password,phoneno,address)
 

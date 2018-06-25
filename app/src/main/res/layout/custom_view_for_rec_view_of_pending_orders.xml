@@ -55,7 +55,7 @@
                 android:text="Order No : 1"
                 android:textSize="17sp"
                 android:textAllCaps="true"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:layout_gravity="right|center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

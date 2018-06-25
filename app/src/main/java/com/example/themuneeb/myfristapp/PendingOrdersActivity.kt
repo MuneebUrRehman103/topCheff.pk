@@ -17,11 +17,6 @@ class PendingOrdersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pending_orders)
-
-        val database = Database(this)
-        database.deleteUserRegisterDetail()
-        database.addUserRegisterDetail("03122685832","Muneeb","muneeburrehman103@gmail.com","123#@!","03122685832","defence phase VII khayaban e khizri")
-
     //    fetchAllThePendingOrdersFromFirebase()
 
         addAdapterForRecyclerView()

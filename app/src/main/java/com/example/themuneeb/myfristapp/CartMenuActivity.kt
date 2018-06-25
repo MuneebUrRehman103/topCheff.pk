@@ -53,6 +53,12 @@ class CartMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cart_menu)
 
 
+
+
+
+        setUpSideBar()
+
+
         val database = Database(this)
 
 
@@ -526,6 +532,88 @@ class CartMenuActivity : AppCompatActivity() {
 
 
 }
+
+
+
+
+    fun setUpSideBar(){
+
+
+        navView.setNavigationItemSelectedListener {
+
+            when (it.itemId) {
+                R.id.menuProfile -> {
+                    // handle click
+
+                    Toast.makeText(this,"Profile",Toast.LENGTH_SHORT).show()
+
+
+                    val intent = Intent(this, RegisterUserActivity::class.java)
+                    intent.putExtra("isClickedFromSideBar","true")
+
+
+                    startActivity(intent)
+
+
+                    true
+                }
+
+                R.id.menuChat -> {
+                    // handle click
+
+
+
+
+                    val intent = Intent(this, PendingOrdersActivity::class.java)
+                    intent.putExtra("isClickedFromSideBar","true")
+
+
+                    startActivity(intent)
+
+
+                    true
+                }
+                R.id.menuMyOrder -> {
+                    // handle click
+
+
+                    val intent = Intent(this, PendingOrdersActivity::class.java)
+                    intent.putExtra("isClickedFromSideBar","true")
+
+
+                    startActivity(intent)
+
+
+                    true
+                }
+                R.id.menuLogout -> {
+                    // handle click
+
+
+
+
+                    val intent = Intent(this, PhoneNoLoginActivity::class.java)
+
+                    startActivity(intent)
+
+
+
+
+                    true
+                }
+
+                else -> false
+            }
+
+
+
+        }
+
+
+
+
+    }
+
 
 
 }

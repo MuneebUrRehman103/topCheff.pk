@@ -116,7 +116,7 @@ class StandarMenuFragment : Fragment() {
                 urlToGetMenuItems = "http://topchef.pk/api/router.php?method=getMenusByVendorAndType&type="+categoryOfStandardMenu+"&vendor="+vendorIdForStandardMenu
             }
 
-            createMenuItemsFragment()
+           createMenuItemsFragment()
         }
 
 
@@ -132,7 +132,7 @@ class StandarMenuFragment : Fragment() {
 
             }
 
-            createVendorItemsFragment()
+         createVendorItemsFragment()
         }
 
 

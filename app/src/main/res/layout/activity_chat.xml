@@ -10,7 +10,7 @@ android:paddingLeft="8dp"
 android:paddingRight="8dp"
 android:paddingTop="8dp"
 tools:context="com.example.themuneeb.myfristapp.ChatActivity"
-    android:background="@drawable/background1_bg"
+    android:background="@drawable/chat_backgorund"
 
     >
 
@@ -44,6 +44,7 @@ tools:context="com.example.themuneeb.myfristapp.ChatActivity"
         android:id="@+id/txtMessageByUser"
         android:layout_marginBottom="15dp"
         android:textColor="@color/white"
+        android:textColorHint="@color/cart_background_color2"
         />
 </android.support.design.widget.TextInputLayout>
 

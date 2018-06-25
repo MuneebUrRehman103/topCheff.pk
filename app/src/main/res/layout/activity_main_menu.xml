@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
 
-    android:background="@drawable/background1_bg"
+    android:background="@drawable/vendor_menu_background"
 
 
     >
@@ -40,13 +40,13 @@
 
         <android.support.v7.widget.CardView
 
-            android:id="@+id/cardViewForDawatMenu"
+            android:id="@+id/cardViewForMainMenu"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="120dp"
 
 
-            app:cardBackgroundColor="@color/cart_background_color2"
+            app:cardBackgroundColor="@color/fbutton_color_transparent"
             app:cardElevation="4dp"
             android:layout_margin="8dp"
 
@@ -56,12 +56,12 @@
 
 
             <LinearLayout
-                android:id="@+id/LinearLayoutForTextHolderOfDawatMenuUpperLayout"
+                android:id="@+id/LinearLayoutForTextHolderOfMainMenuUpperLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/LinearLayoutForTextHolderOfDawatMenuMainLayout"
+                    android:id="@+id/LinearLayoutForTextHolderOfMainMenuMainLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -72,7 +72,7 @@
                     >
 
                     <TextView
-                        android:id="@+id/txtTitleOfDawatMenu"
+                        android:id="@+id/txtTitleOfMainMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Main Menu"
@@ -467,7 +467,7 @@
 
 
             <ImageView
-                android:id="@+id/imgInCardViewOfDawatMenu"
+                android:id="@+id/imgInCardViewOfWeeklyMonthlyMenu"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="top|left"
@@ -476,12 +476,12 @@
                 android:src="@drawable/cart_rightside_image" />
 
             <LinearLayout
-                android:id="@+id/LinearLayoutForTextHolderOfDawatMenuUpperLayout"
+                android:id="@+id/LinearLayoutForTextHolderOfWeeklyMonthlyPickMenuUpperLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/LinearLayoutForTextHolderOfDawatMenuMainLayout"
+                    android:id="@+id/LinearLayoutForTextHolderOfWeeklyMonthlyPickMenuMainLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -492,10 +492,10 @@
                     >
 
                     <TextView
-                        android:id="@+id/txtTitleOfDawatMenu"
+                        android:id="@+id/txtTitleOfWeeklyMonthlyPickMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Single Pick"
+                        android:text="Weekly Monthly Pick"
                         android:textAlignment="center"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
@@ -503,7 +503,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txtDescriptionOfDawatMenu"
+                        android:id="@+id/txtDescriptionOfWeeklyMonthlyPickMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Menu"
@@ -538,7 +538,7 @@
 
 
             <ImageView
-                android:id="@+id/imgInCardViewOfLunchBoxMenu"
+                android:id="@+id/imgInCardViewOfBeemarMenu"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="top|left"
@@ -547,12 +547,12 @@
                 android:src="@drawable/cart_rightside_image" />
 
             <LinearLayout
-                android:id="@+id/LinearLayoutForTextHolderOfLunchBoxMenuUpperLayout"
+                android:id="@+id/LinearLayoutForTextHolderOfBeemarMenuUpperLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/LinearLayoutForTextHolderOfLunchBoxMenuMainLayout"
+                    android:id="@+id/LinearLayoutForTextHolderOfBeemarMenuMainLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -563,7 +563,7 @@
                     >
 
                     <TextView
-                        android:id="@+id/txtTitleOfLunchBoxMenu"
+                        android:id="@+id/txtTitleOfBeemarMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Patients"
@@ -574,7 +574,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txtDescriptionOfLunchBoxMenu"
+                        android:id="@+id/txtDescriptionOfBeemarMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Menu"

@@ -19,6 +19,13 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.database.*
 
+import com.google.firebase.auth.FirebaseUser
+
+import com.google.firebase.auth.AuthResult
+import android.support.annotation.NonNull
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+
 
 class PhoneNoLoginActivity : AppCompatActivity() {
 
@@ -33,7 +40,14 @@ class PhoneNoLoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_phone_no_login)
 
 
-       var isUserLoggedIn = checkIfUserIsAlreadySignedIn()
+
+        val database = Database(this)
+        database.deleteUserRegisterDetail()
+        database.addUserRegisterDetail("10000000009","Muneeb","muneeburrehman103@gmail.com","123#@!","03122685832","defence phase VII khayaban e khizri")
+
+
+
+        var isUserLoggedIn = checkIfUserIsAlreadySignedIn()
 
 
 
@@ -94,7 +108,7 @@ class PhoneNoLoginActivity : AppCompatActivity() {
                         val sessionIdValueFromFirebase = hashMapValuesUnderUserId["sessionId"]
 
 
-                        if (sessionIdOfUserFromDatabase == sessionIdValueFromFirebase.toString()) {
+                        if (sessionIdOfUserFromDatabase == sessionIdValueFromFirebase.toString() && sessionIdOfUserFromDatabase != null) {
 
 
                             sessionMatches = true
@@ -153,47 +167,98 @@ class PhoneNoLoginActivity : AppCompatActivity() {
         val mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-
-                progressBar.visibility = View.INVISIBLE
-
-
-                txtLoginTextBoxTitle.isCursorVisible = false
-                txtLoginTextBoxTitle.isClickable = false
-                txtLoginTextBoxTitle.isFocusable = false
+                // This callback will be invoked in two situations:
+                // 1 - Instant verification. In some cases the phone number can be instantly
+                //     verified without needing to send or enter a verification code.
+                // 2 - Auto-retrieval. On some devices Google Play services can automatically
+                //     detect the incoming verification SMS and perform verification without
+                //     user action.
+                // Log.d(FragmentActivity.TAG, "onVerificationCompleted:" + credential)
 
                 txtLoginTextBoxTitle.setText("Verification Code Received")
-
-                val selectedMenuOptionName = "Catering"
-
 
                 enterUserInFirebaseViaUserIdIEPhoneno(phoneNo)
 
 
+
+                signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
 
+                txtLoginTextBoxTitle.isCursorVisible = true
+                txtLoginTextBoxTitle.isClickable = true
+                txtLoginTextBoxTitle.isFocusable = true
+                txtLoginTextBoxTitle.hint = "Re-Enter Your Mobile Number"
+                btnLogin.isClickable = true
+                progressBar.visibility = View.INVISIBLE
 
+                if (e is FirebaseAuthInvalidCredentialsException) {
+                    // Invalid request
+                    // ...
+                } else if (e is FirebaseTooManyRequestsException) {
+                    // The SMS quota for the project has been exceeded
+                    // ...
+                }
+
+                // Show a message and update the UI
+                // ...
             }
 
+            override fun onCodeSent(verificationId: String?,
+                                    token: PhoneAuthProvider.ForceResendingToken?) {
+                // The SMS verification code has been sent to the provided phone number, we
+                // now need to ask the user to enter the code and then construct a credential
+                // by combining the code with a verification ID.
+                //  Log.d(FragmentActivity.TAG, "onCodeSent:" + verificationId!!)
 
-//            override fun onCodeSent(verificationId: String?, p1: PhoneAuthProvider.ForceResendingToken?) {
-//                super.onCodeSent(verificationId, p1)
-//
-//
-//                //   The SMS verification code has been sent to the provided phone number, we
-//                // now need to ask the user to enter the code and then construct a credential
-//                // by combining the code with a verification ID
-//                print("onCodeSent:" + verificationId!!)
-//
-//
-//            }
+                // Save verification ID and resending token so we can use them later
+                val mVerificationId = verificationId
+                val mResendToken = token
 
+                val verificationId = mVerificationId!! as String
+
+                txtLoginTextBoxTitle.isCursorVisible = true
+                txtLoginTextBoxTitle.isClickable = true
+                txtLoginTextBoxTitle.isFocusable = true
+                txtLoginTextBoxTitle.hint = "Enter The Code You Have Received"
+                btnLogin.isClickable = true
+                progressBar.visibility = View.INVISIBLE
+
+                btnLogin.setOnClickListener {
+
+                    txtLoginTextBoxTitle.isCursorVisible = false
+                    txtLoginTextBoxTitle.isClickable = false
+                    txtLoginTextBoxTitle.isFocusable = false
+                    txtLoginTextBoxTitle.hint = "Please Wait"
+                    btnLogin.isClickable = false
+
+                    progressBar.visibility = View.VISIBLE
+
+                    val code = txtLoginTextBoxTitle.text.toString()
+
+                    if (code!=null){
+
+                        val credential = PhoneAuthProvider.getCredential(verificationId, code)
+
+
+                        signInWithPhoneAuthCredential(credential)
+
+                        signInWithPhoneAuthCredential(credential)
+
+                    }
+
+
+                }
+
+
+
+
+                // ...
+            }
         }
-
-
 
 
 
@@ -206,6 +271,10 @@ class PhoneNoLoginActivity : AppCompatActivity() {
                 mCallbacks)
 
 
+
+
+
+
         progressBar.visibility = View.VISIBLE
 
 
@@ -215,9 +284,39 @@ class PhoneNoLoginActivity : AppCompatActivity() {
         txtLoginTextBoxTitle.isFocusable = false
         txtLoginTextBoxTitle.setText("Please Wait Verifing")
 
+        btnLogin.isClickable = false
+
+
+
+
+
+
+
+
+
+
     }
 
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
+                    override fun onComplete(task: Task<AuthResult>) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                        //    Log.d(FragmentActivity.TAG, "signInWithCredential:success")
 
+                            val user = task.getResult().getUser()
+                            // ...
+                        } else {
+                            // Sign in failed, display a message and update the UI
+                          //  Log.w(FragmentActivity.TAG, "signInWithCredential:failure", task.getException())
+                            if (task.getException() is FirebaseAuthInvalidCredentialsException) {
+                                // The verification code entered was invalid
+                            }
+                        }
+                    }
+                })
+    }
     fun enterUserInFirebaseViaUserIdIEPhoneno(phoneNo: String) {
 
         val firebaseDatabaseRef = FirebaseDatabase.getInstance().getReference("Users")

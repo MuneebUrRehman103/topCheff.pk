@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.themuneeb.myfristapp.CartMenuActivity"
-        android:background="@drawable/background1_bg"
+        android:background="@drawable/cart_background"
         android:padding="16dp">
 
 
@@ -53,7 +53,9 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+
+                    >
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -70,6 +72,7 @@
                             android:text="Total Rs : "
                             android:textSize="20sp"
                             android:textColor="@color/white"
+                            android:textStyle="bold"
 
                             />
 
@@ -94,6 +97,7 @@
                         android:id="@+id/btnSubmitOrder"
                         android:text="Submit Order"
                         android:textColor="@android:color/white"
+                        android:textStyle="bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -152,13 +156,13 @@
 
 
     <android.support.design.widget.NavigationView
-
+        android:id="@+id/navView"
         app:headerLayout="@layout/drawer_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_light_background"
-        app:itemTextColor="@color/colorPrimary"
-        app:itemIconTint="@color/colorPrimaryDark"
+        android:background="@color/cart_background_color2"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"   >
 

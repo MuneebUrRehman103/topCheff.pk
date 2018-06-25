@@ -2,10 +2,10 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/menuProfile" android:title="Profile" android:icon="@drawable/common_google_signin_btn_icon_light"/>
-    <item android:id="@+id/menuMyOrder" android:title="My Order" android:icon="@drawable/common_google_signin_btn_icon_light"/>
-    <item android:id="@+id/menuChat" android:title="Chat" android:icon="@drawable/common_google_signin_btn_icon_light"/>
-    <item android:id="@+id/menuLogout" android:title="Logout" android:icon="@drawable/common_google_signin_btn_icon_light"/>
+    <item android:id="@+id/menuProfile" android:title="Profile" android:icon="@drawable/profile"/>
+    <item android:id="@+id/menuMyOrder" android:title="My Order" android:icon="@drawable/round_fastfood_white_18dp"/>
+    <item android:id="@+id/menuChat" android:title="Chat" android:icon="@drawable/chat_image"/>
+    <item android:id="@+id/menuLogout" android:title="Logout" android:icon="@drawable/logout_image"/>
 
 
 </menu>

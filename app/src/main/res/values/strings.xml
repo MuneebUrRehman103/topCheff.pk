@@ -11,5 +11,6 @@
     <string name="title_activity_general_menu_for_selected_category_activity">
         GeneralMenuForSelectedCategoryActivityActivity
     </string>
-    <string name="title_activity_main2">TestActivity</string>
+    <string name="drawer_close">Close</string>
+    <string name="drawer_open">Open</string>
 </resources>

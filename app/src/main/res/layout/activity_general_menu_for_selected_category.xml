@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:background="@drawable/background1_bg"
+        android:background="@drawable/standard_menu_background"
         tools:context="com.example.themuneeb.myfristapp.GeneralMenuForSelectedCategoryActivity">
 
 
@@ -39,7 +39,10 @@
                 android:background="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="Menu">
+                app:title="Menu"
+                app:titleTextColor="@color/cart_background_color2"
+
+                >
 
             </android.support.v7.widget.Toolbar>
 
@@ -47,7 +50,7 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/btn_primary_color">
+                android:background="@color/cart_background_color1">
 
 
             </android.support.design.widget.TabLayout>
@@ -84,7 +87,7 @@
             android:layout_margin="@dimen/fab_margin"
             android:backgroundTint="#ffffff"
             app:borderWidth="0dp"
-            app:srcCompat="@drawable/logo_top_cheff" />
+            app:srcCompat="@drawable/message_floating_image" />
 
 
 
@@ -116,12 +119,13 @@
 
     <android.support.design.widget.NavigationView
 
+        android:id="@+id/navViewOfDrawerLayout"
         app:headerLayout="@layout/drawer_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_light_background"
-        app:itemTextColor="@color/colorPrimary"
-        app:itemIconTint="@color/colorPrimaryDark"
+        android:background="@color/cart_background_color2"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"   >
 

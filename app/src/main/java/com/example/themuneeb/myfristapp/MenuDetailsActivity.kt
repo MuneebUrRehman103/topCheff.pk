@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
@@ -41,6 +42,12 @@ class MenuDetailsActivity(menuId: String = "1") : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_details)
+
+
+
+        setupSideBarToggle()
+
+        setUpSideBar()
 
 
         if(intent.getStringExtra("menuId") != null ){
@@ -255,6 +262,100 @@ class MenuDetailsActivity(menuId: String = "1") : AppCompatActivity() {
         }
 
     }
+
+
+    fun setupSideBarToggle(){
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val drawerToggle = ActionBarDrawerToggle(this,sideBar,toolBarForMenuDetails,R.string.drawer_open,R.string.drawer_close)
+        drawerToggle.isDrawerIndicatorEnabled = true
+        drawerToggle.syncState()
+
+
+        sideBar.addDrawerListener(drawerToggle)
+
+
+    }
+
+
+    fun setUpSideBar(){
+
+
+        navView.setNavigationItemSelectedListener {
+
+            when (it.itemId) {
+                R.id.menuProfile -> {
+                    // handle click
+
+
+
+
+                    val intent = Intent(this, RegisterUserActivity::class.java)
+                    intent.putExtra("isClickedFromSideBar","true")
+
+
+                    startActivity(intent)
+
+
+                    true
+                }
+
+                R.id.menuChat -> {
+                    // handle click
+
+
+
+
+                    val intent = Intent(this, PendingOrdersActivity::class.java)
+                    intent.putExtra("isClickedFromSideBar","true")
+
+
+                    startActivity(intent)
+
+
+                    true
+                }
+                R.id.menuMyOrder -> {
+                    // handle click
+
+
+
+                    val intent = Intent(this, PendingOrdersActivity::class.java)
+                    intent.putExtra("isClickedFromSideBar","true")
+
+
+                    startActivity(intent)
+
+
+                    true
+                }
+                R.id.menuLogout -> {
+                    // handle click
+
+
+
+                    val intent = Intent(this, PhoneNoLoginActivity::class.java)
+
+                    startActivity(intent)
+
+
+
+
+                    true
+                }
+
+                else -> false
+            }
+
+
+        }
+
+
+
+
+    }
+
 
 
 }

@@ -238,13 +238,13 @@
 
 
     <android.support.design.widget.NavigationView
-android:id="@+id/navView"
+        android:id="@+id/navView"
         app:headerLayout="@layout/drawer_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_light_background"
-        app:itemTextColor="@color/colorPrimary"
-        app:itemIconTint="@color/colorPrimaryDark"
+        android:background="@color/cart_background_color2"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"   >
 
