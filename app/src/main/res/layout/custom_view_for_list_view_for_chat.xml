@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
    android:id="@+id/messageView"
-    android:background="@color/white"
 >
 
     <LinearLayout
@@ -16,7 +15,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:id="@+id/messageView2"
-        android:background="@color/white"
+
 
         android:padding="6dp">
 
@@ -79,7 +78,7 @@
             android:paddingRight="10dp"
             android:text="time"
             android:textColor="@color/cart_background_color1"
-            android:textSize="8sp"
+            android:textSize="12sp"
             android:textStyle="normal|bold"
 
             />

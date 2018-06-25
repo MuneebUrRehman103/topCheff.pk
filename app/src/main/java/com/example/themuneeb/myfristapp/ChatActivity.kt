@@ -4,7 +4,9 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.example.themuneeb.myfristapp.Database.Database
 import com.example.themuneeb.myfristapp.Model.Message
+import com.example.themuneeb.myfristapp.Model.User
 import com.example.themuneeb.myfristapp.ViewHolder.AdapterForRecyclerViewOfChat
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_chat.*
@@ -25,6 +27,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
+        val orderId = intent.getStringExtra("orderId")
 
 
         recViewToViewAllMessages.layoutManager = LinearLayoutManager(this)
@@ -35,7 +38,7 @@ class ChatActivity : AppCompatActivity() {
         val message2 = Message("Admin","Your Order is being prepared :) if you have any queries please ask below :","000")
 
         messages.add(message1)
-        messages.add(message2)
+       // messages.add(message2)
 
         val adapter = AdapterForRecyclerViewOfChat(messages)
 
@@ -43,7 +46,10 @@ class ChatActivity : AppCompatActivity() {
         recViewToViewAllMessages.adapter = adapter
 
 
-        val firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference("chatOfOrdersByUsers").child("103").child("004")
+        val userDetails = getUserDetailFromDatabase()
+
+                                                                                                                        //userPhoneNumber = Userid//
+        val firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference("chatOfOrdersByUsers").child(userDetails.phoneno).child(orderId)
 
         firebaseDatabaseReference.addChildEventListener( object : ChildEventListener {
             override fun onCancelled(p0: DatabaseError?) {
@@ -62,7 +68,6 @@ class ChatActivity : AppCompatActivity() {
 
                 val time = dataSnapshot?.key
                 val msg = dataSnapshot?.value as HashMap<String,String>
-
 
 
                 val message = Message(msg["sender"].toString(),msg["text"].toString(),time.toString())
@@ -85,16 +90,23 @@ class ChatActivity : AppCompatActivity() {
 
 
 
-        var timeOfMessage = 999
-
         btnSendMessage.setOnClickListener {
+
+            var dateFormat = SimpleDateFormat("dd:M:yyyy;hh:mm:ss")
+            var timeStamp = dateFormat.format(Date())
+
 
 
            var messageByUser =  txtMessageByUser.text.toString()
 
-           val time = timeOfMessage++.toString()
 
-            addUserMessageByUserIdAndOrderId("103","Muneeb","004",time,txtMessageByUser.text.toString())
+            val time = timeStamp.toString()
+
+
+            val userDetails = getUserDetailFromDatabase()
+
+                                            //userPhoneNumber = UserId//
+            addUserMessageByUserIdAndOrderId(userDetails.phoneno,userDetails.username,orderId,time,txtMessageByUser.text.toString())
 
             txtMessageByUser.setText("")
 
@@ -123,6 +135,18 @@ class ChatActivity : AppCompatActivity() {
 //        }
 //    })
 
+
+
+    fun getUserDetailFromDatabase(): User {
+
+        val databaseRef = Database(this)
+
+        val allUserDetails = databaseRef.getUserRegisterDetail()
+
+        val userDetails = allUserDetails[0]
+
+        return userDetails
+    }
 
 
     fun addUserMessageByUserIdAndOrderId (userId : String , username : String , orderId : String , timeOfMessage : String , message : String){

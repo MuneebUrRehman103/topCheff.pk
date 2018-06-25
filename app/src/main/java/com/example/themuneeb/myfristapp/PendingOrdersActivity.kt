@@ -18,7 +18,9 @@ class PendingOrdersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pending_orders)
 
-
+        val database = Database(this)
+        database.deleteUserRegisterDetail()
+        database.addUserRegisterDetail("03122685832","Muneeb","muneeburrehman103@gmail.com","123#@!","03122685832","defence phase VII khayaban e khizri")
 
     //    fetchAllThePendingOrdersFromFirebase()
 
@@ -127,7 +129,7 @@ class PendingOrdersActivity : AppCompatActivity() {
 
                 val valueReceivedFromFirebase = dataSnapshot?.value as HashMap<String, Any>
 
-                val orderResponseReceivedFromFirebase = valueReceivedFromFirebase[userIdFromDatabase] as HashMap<String, Any>
+                val orderResponseReceivedFromFirebase = valueReceivedFromFirebase["03122685832"] as HashMap<String, Any>
 
                 val maxOrderNoOfUsersInFirebase = orderResponseReceivedFromFirebase["latest_order_no"].toString()
 

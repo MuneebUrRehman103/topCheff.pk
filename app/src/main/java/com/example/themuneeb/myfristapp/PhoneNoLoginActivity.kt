@@ -36,21 +36,6 @@ class PhoneNoLoginActivity : AppCompatActivity() {
        var isUserLoggedIn = checkIfUserIsAlreadySignedIn()
 
 
-        btnLogin.setOnClickListener {
-
-
-            val intent = Intent(this@PhoneNoLoginActivity, MainMenuActivity::class.java)
-
-            startActivity(intent)
-
-//            val phoneNumber = txtLoginTextBoxTitle.text.toString()
-//
-//            verifyUsersPhoneNumber(phoneNumber)
-//
-//
-//            enterUserInFirebaseViaUserIdIEPhoneno("03122685832")
-
-        }
 
 
     }
@@ -133,7 +118,7 @@ class PhoneNoLoginActivity : AppCompatActivity() {
                                 verifyUsersPhoneNumber(phoneNumber)
 
 
-                                enterUserInFirebaseViaUserIdIEPhoneno("03122685832")
+                               // enterUserInFirebaseViaUserIdIEPhoneno("03122685832")
 
                             }
 

@@ -14,6 +14,11 @@
         <activity android:name=".StandardMenuActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PhoneNoLoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".CateringActivity" />
         <activity android:name=".SideBarActivity" />
@@ -23,17 +28,17 @@
             android:name=".GeneralMenuForSelectedCategoryActivity"
             android:label="@string/title_activity_general_menu_for_selected_category_activity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".MainMenuActivity" >
+
+        </activity>
         <activity android:name=".SelectedVendorsMenuActivity" />
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".ChatActivity" />
+        <activity android:name=".ChatActivity" >
+
+        </activity>
 
         <activity android:name=".PendingOrdersActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".PendingOrdersDetailActivity"></activity>

@@ -1,5 +1,6 @@
 package com.example.themuneeb.myfristapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -19,9 +20,20 @@ class PendingOrdersDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pending_orders_detail)
 
+        val orderId = intent.getStringExtra("orderId")
 
 
-        addAdapterForRecyclerView()
+        addAdapterForRecyclerView(orderId)
+
+
+        cardViewForChat.setOnClickListener{
+            val withIntentToChangeToChatActivity = Intent(this,ChatActivity::class.java)
+            withIntentToChangeToChatActivity.putExtra("orderId",orderId)
+            startActivity(withIntentToChangeToChatActivity)
+        }
+
+
+
 
     }
 
@@ -40,7 +52,7 @@ class PendingOrdersDetailActivity : AppCompatActivity() {
     }
 
 
-    fun addAdapterForRecyclerView() {
+    fun addAdapterForRecyclerView(orderId : String) {
 
 //        val listOfPendingOrderNo = fetchAllThePendingOrdersFromFirebase()
 
@@ -70,7 +82,7 @@ class PendingOrdersDetailActivity : AppCompatActivity() {
 
                 val valueReceivedFromFirebase = dataSnapshot?.value as HashMap<String, Any>
 
-                val orderResponseReceivedFromFirebase = valueReceivedFromFirebase[userIdFromDatabase] as HashMap<String, Any>
+                val orderResponseReceivedFromFirebase = valueReceivedFromFirebase["03122685832"] as HashMap<String, Any>
 
                 val maxOrderNoOfUsersInFirebase = orderResponseReceivedFromFirebase["latest_order_no"].toString()
 
@@ -96,8 +108,14 @@ class PendingOrdersDetailActivity : AppCompatActivity() {
 
                 }
 
+
+
+                val listOfOrderDetailsForGivenOrderNo = provideOrderDetailsForGivenOrderNoFromAllTheOrderDetailsGiven(orderId.toInt(),allOrderDetailsInMap)
+
+
+
                 recViewForPendingOrdersDetail.layoutManager = LinearLayoutManager(this@PendingOrdersDetailActivity)
-                recViewForPendingOrdersDetail.adapter = AdapterForRecyclerViewOfPendingOrdeDetails(allOrderDetailsInMap.get(0))
+                recViewForPendingOrdersDetail.adapter = AdapterForRecyclerViewOfPendingOrdeDetails(listOfOrderDetailsForGivenOrderNo)
 
                 firebaseInst.removeEventListener(this)
 
@@ -112,6 +130,54 @@ class PendingOrdersDetailActivity : AppCompatActivity() {
 
     }
 
+
+
+
+
+}
+
+fun provideOrderDetailsForGivenOrderNoFromAllTheOrderDetailsGiven ( orderNo : Int , allOrderDetails : MutableList<HashMap<Any, Any>?>) : MutableList<orderDetailOfUser> {
+
+
+
+    var listOfOrderDetails = mutableListOf<orderDetailOfUser>()
+
+    val orderDetailForOrderNo = allOrderDetails.get(orderNo)
+
+    var itemDelivered = "false"
+
+    for (key in orderDetailForOrderNo!!.keys) {
+
+        var receivedKey = key as String
+
+        if (receivedKey == "delivered") {
+
+            itemDelivered = orderDetailForOrderNo[key] as String
+
+
+        }else{
+
+         val orderDetails = orderDetailForOrderNo[key] as HashMap<String, Any>
+
+            val itemName : String = orderDetails["itemName"] as String
+            val itemQuantity : String = orderDetails["quantity"] as String
+
+            val orderDetailOfUser = orderDetailOfUser(itemName,itemQuantity,itemDelivered)
+
+
+            listOfOrderDetails.add(orderDetailOfUser)
+
+        }
+
+
+    }
+
+    return listOfOrderDetails
+
+}
+
+
+class orderDetailOfUser(var itemName:String,var quantity : String ,var delivered : String) {
 
 
 

@@ -28,7 +28,7 @@ class MainMenuActivity : AppCompatActivity() {
 
             /// catering daawat lunchbox single_pick beemar
 
-            val selectedMenuOptionName = "beemar"
+            val selectedMenuOptionName = "buzurg"
 
             val intent = Intent(this,GeneralMenuForSelectedCategoryActivity::class.java)
             intent.putExtra("selectedMenuOptionName", selectedMenuOptionName)
@@ -77,6 +77,37 @@ class MainMenuActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+        cardViewForWeeklyMonthlyPick.setOnClickListener {
+
+
+
+//            val selectedMenuOptionName = "beemar"
+//
+//            val intent = Intent(this,GeneralMenuForSelectedCategoryActivity::class.java)
+//            intent.putExtra("selectedMenuOptionName", selectedMenuOptionName)
+//
+//
+//            startActivity(intent)
+
+        }
+
+        cardViewForBeemar.setOnClickListener {
+
+
+
+            val selectedMenuOptionName = "Beemar_breakfast"
+
+            val intent = Intent(this,GeneralMenuForSelectedCategoryActivity::class.java)
+            intent.putExtra("selectedMenuOptionName", selectedMenuOptionName)
+
+
+            startActivity(intent)
+
+        }
+
+
+
     }
 
 

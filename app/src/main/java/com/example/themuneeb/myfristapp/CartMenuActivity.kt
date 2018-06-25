@@ -95,18 +95,18 @@ class CartMenuActivity : AppCompatActivity() {
 
     fun updateTotalPriceForAllTheOrders() {
 
-//
-//        var totalPrice = 0
-//
-//        for (order in listOfOrderInTheCart) {
-//
-//            var ordersPriceFromDatabase = order.price.replace(" Rs","",true)
-//
-//          totalPrice = totalPrice + ordersPriceFromDatabase.toInt()
-//
-//        }
-//
-//        txtTotalPrice.text = totalPrice.toString()
+
+        var totalPrice = 0
+
+        for (order in listOfOrderInTheCart) {
+
+            var ordersPriceFromDatabase = order.price.replace(" Rs","",true)
+
+          totalPrice = totalPrice + ordersPriceFromDatabase.toInt()
+
+        }
+
+        txtTotalPrice.text = totalPrice.toString()
 
     }
 
@@ -401,7 +401,7 @@ class CartMenuActivity : AppCompatActivity() {
             allUsersRegisteredFromDatabase = databaseInstance.getUserRegisterDetail()
 
 
-            var userInfo = allUsersRegisteredFromDatabase[0]
+           var userInfo = allUsersRegisteredFromDatabase[0]
 
             var emailUserAddress =  userInfo.address
 

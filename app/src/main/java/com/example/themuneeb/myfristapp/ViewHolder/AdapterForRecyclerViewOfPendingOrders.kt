@@ -42,13 +42,7 @@ class AdapterForRecyclerViewOfPendingOrders(val listOfPendingOrderNo : MutableLi
         val cardViewForPendingOrderNo =  LayoutInflater.from(parent?.context).inflate(R.layout.custom_view_for_rec_view_of_pending_orders,parent,false)
 
 
-        cardViewForPendingOrderNo.setOnClickListener {
-
-            val intent = Intent(parent?.context, PendingOrdersDetailActivity::class.java)
-
-            ContextCompat.startActivity(parent?.context, intent, null)
-
-        }
+       // cardViewForPendingOrderNo
 
 
 
@@ -64,6 +58,17 @@ class AdapterForRecyclerViewOfPendingOrders(val listOfPendingOrderNo : MutableLi
         val orderNoOfPendingOrder = listOfPendingOrderNo.get(position)
 
         holder?.view?.LinearLayout1?.LinearLayout2?.LinearLayout3?.txtItemName?.text = "Order No : "+orderNoOfPendingOrder.toString()
+
+        holder?.view?.setOnClickListener {
+
+                    val intent = Intent(holder?.view?.context, PendingOrdersDetailActivity::class.java)
+
+                    intent.putExtra("orderId",orderNoOfPendingOrder.toString())
+
+                    ContextCompat.startActivity(holder?.view?.context, intent, null)
+
+                }
+
 
 
     }

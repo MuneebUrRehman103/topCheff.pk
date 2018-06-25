@@ -55,8 +55,10 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
 
 /////////////////////////////////
 
-        adapterOfFragmentsForPagesOfTabsMenu.addFragment(standardMenuFragment,"Standard Menu")
-        adapterOfFragmentsForPagesOfTabsMenu.addFragment(vendorMenuFragment,"Vendor Menu")
+        if(selectedMenuOptionName.toString() != "weeklyMonthlyPick") {
+            adapterOfFragmentsForPagesOfTabsMenu.addFragment(standardMenuFragment, "Standard Menu")
+            adapterOfFragmentsForPagesOfTabsMenu.addFragment(vendorMenuFragment, "Vendor Menu")
+        }
 
         pager.adapter = adapterOfFragmentsForPagesOfTabsMenu
 
@@ -81,7 +83,7 @@ class GeneralMenuForSelectedCategoryActivity : AppCompatActivity() {
         btnToOpenChat.setOnClickListener {
 
 
-            val withIntentToChangeToChatActivity = Intent(this,ChatActivity::class.java)
+            val withIntentToChangeToChatActivity = Intent(this,PendingOrdersActivity::class.java)
             startActivity(withIntentToChangeToChatActivity)
 
 
